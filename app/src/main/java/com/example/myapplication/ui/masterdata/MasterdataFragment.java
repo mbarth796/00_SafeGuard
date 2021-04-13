@@ -1,14 +1,15 @@
 package com.example.myapplication.ui.masterdata;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,48 +22,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import android.database.sqlite.SQLiteDatabase;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import java.util.List;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
-
 import com.example.myapplication.R;
 
-public class MasterdataFragment extends   Fragment {
+public class MasterdataFragment extends FragmentActivity {
 
-    /*private MasterdataViewModel mViewModel;
-
-    public static MasterdataFragment newInstance() {
-        return new MasterdataFragment();
-    }*/
-
-  /*  @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_masterdata, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MasterdataViewModel.class);
-        // TODO: Use the ViewModel
-    }
-*/
 
     //Variablen die für die Stammdaten relevant sind
     DatabaseHelper1 myDB;
@@ -77,15 +41,15 @@ public class MasterdataFragment extends   Fragment {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_masterdata);
-        myDB = new DatabaseHelper1(this);
+         myDB = new DatabaseHelper1(this);
 
-        editVorname = (EditText) getView().findViewById(R.id.editText_VornameUser);
-        editName = (EditText) getView().findViewById(R.id.editText_NameUser);
-        editTelefonnummer = (EditText) getView().findViewById(R.id.editText_TelefonnummerUser);
-        editGeburtsdatum = (EditText) getView().findViewById(R.id.editText_GeburtsdatumUser);
-        editVorerkrankungen = (EditText) getView().findViewById(R.id.editText_VorerkrankungenUser);
-        buttonUpdate_Data = (Button) getView().findViewById(R.id.button_UpdateUser);
-        buttonDelete_Data = (Button) getView().findViewById(R.id.button_DeleteUser);
+        editVorname = (EditText) findViewById(R.id.editText_VornameUser);
+        editName = (EditText) findViewById(R.id.editText_NameUser);
+        editTelefonnummer = (EditText)findViewById(R.id.editText_TelefonnummerUser);
+        editGeburtsdatum = (EditText)findViewById(R.id.editText_GeburtsdatumUser);
+        editVorerkrankungen = (EditText) findViewById(R.id.editText_VorerkrankungenUser);
+        buttonUpdate_Data = (Button) findViewById(R.id.button_UpdateUser);
+        buttonDelete_Data = (Button) findViewById(R.id.button_DeleteUser);
 
         ViewStammdatenUser();
         DeleteData();
@@ -158,11 +122,11 @@ public class MasterdataFragment extends   Fragment {
     public void ViewStammdatenUser() {
 
         Cursor cursor = myDB.getStammdatenData();
-        TextView vornameStammdatenView = (TextView) getView().findViewById(R.id.editText_VornameUser);
-        TextView nameStammdatenView = (TextView) getView().findViewById(R.id.editText_NameUser);
-        TextView telefonnummerStammdatenView= (TextView) getView().findViewById(R.id.editText_TelefonnummerUser);
-        TextView geburtsdatumStammdatenView= (TextView) getView().findViewById(R.id.editText_GeburtsdatumUser);
-        TextView vorerkrankungenStammdatenView = (TextView) getView().findViewById(R.id.editText_VorerkrankungenUser);
+        TextView vornameStammdatenView = (TextView) findViewById(R.id.editText_VornameUser);
+        TextView nameStammdatenView = (TextView) findViewById(R.id.editText_NameUser);
+        TextView telefonnummerStammdatenView= (TextView) findViewById(R.id.editText_TelefonnummerUser);
+        TextView geburtsdatumStammdatenView= (TextView) findViewById(R.id.editText_GeburtsdatumUser);
+        TextView vorerkrankungenStammdatenView = (TextView) findViewById(R.id.editText_VorerkrankungenUser);
 
         if(cursor.moveToFirst()) {
             vornameStammdaten = cursor.getString(1);
@@ -178,7 +142,7 @@ public class MasterdataFragment extends   Fragment {
             geburtsdatumStammdatenView.setText(geburtsdatumStammdaten);
 
             blutgruppeStammdaten = cursor.getString(5);
-            blutgruppeSpinner = (Spinner) getView().findViewById(R.id.spinner_blutgruppe);
+            blutgruppeSpinner = (Spinner) findViewById(R.id.spinner_blutgruppe);
             blutgruppeArrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,blutgruppeNames);
             blutgruppeSpinner.setAdapter(blutgruppeArrayAdapter);
 
@@ -207,7 +171,7 @@ public class MasterdataFragment extends   Fragment {
             });
 
             rhesusfaktorStammdaten = cursor.getString(6);
-            rhesusfaktorSpinner = (Spinner) getView().findViewById(R.id.spinner_rhesusfaktor);
+            rhesusfaktorSpinner = (Spinner) findViewById(R.id.spinner_rhesusfaktor);
             rhesusfaktorArrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,rhesusfaktorNames);
             rhesusfaktorSpinner.setAdapter(rhesusfaktorArrayAdapter);
 
