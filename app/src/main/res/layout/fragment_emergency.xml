@@ -8,9 +8,10 @@
     tools:context=".ui.emergency.EmergencyFragment">
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="561dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,248 +21,366 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Vorfall / Unfalltyp -->
             <TextView
-                android:id="@+id/textView_VornameUser"
+                android:id="@+id/textView_accident"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/sup_rounded_corner_grey"
-                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/vornameStammdaten"
+                android:text="Vorfall"
                 android:textColor="@color/black"
                 android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editText_VornameUser"
+            <Button
+                android:id="@+id/button_trafficAccident"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Verkehrsunfall"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_otherAccident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Andere"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Verkehrsunfallart -->
+            <TextView
+                android:id="@+id/textView_trafficAccidentType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/sup_rounded_corner_grey"
                 android:gravity="center_horizontal"
-                android:hint="@string/vornameStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Art des Verkehrsunfalls"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView_NameUser"
+            <Button
+                android:id="@+id/button_car"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_grey"
-                android:fontFamily="@font/bree_serif"
-                android:gravity="center_horizontal"
-                android:text="@string/nachnameStammdaten"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Auto"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_name" />
-
-            <EditText
-                android:id="@+id/editText_NameUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/nachnameStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_name" />
-
-            <TextView
-                android:id="@+id/textView_TelefonnummerUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
-                android:gravity="center_horizontal"
-                android:text="@string/telefonnummerStammdaten"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_bike"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Motorrad / Fahrrad"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_geburtsdatum" />
-
-            <EditText
-                android:id="@+id/editText_TelefonnummerUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/telefonnummerStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_geburtsdatum" />
-
-
-            <TextView
-                android:id="@+id/textView_GeburtsdatumUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
-                android:gravity="center_horizontal"
-                android:text="@string/geburtsdatumStammdaten"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_pedestrian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Fußgänger"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_erkrankungen" />
-
-
-            <EditText
-                android:id="@+id/editText_GeburtsdatumUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/geburtsdatumFormatStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_erkrankungen" />
-
-            <TextView
-                android:id="@+id/textView_BlutgruppeUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Anzahl der Verletzten -->
+            <TextView
+                android:id="@+id/textView_amountHurt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/sup_rounded_corner_grey"
                 android:gravity="center_horizontal"
-                android:text="@string/blutgruppeStammdaten"
+                android:text="Anzahl Verletzte"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_allergien" />
-
-            <EditText
-                android:id="@+id/editText_BlutgruppeUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/blutgruppeStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_allergien" />
-
-            <TextView
-                android:id="@+id/textView_RhesusfaktorUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
-                android:gravity="center_horizontal"
-                android:text="@string/rhesusfaktorStammdaten"
+                app:layout_constraintEnd_toStartOf="@+id/editText_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="1"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_medikation" />
-
-
-            <EditText
-                android:id="@+id/editText_RhesusfaktorUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/rhesusfaktorStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_medikation" />
-
-            <TextView
-                android:id="@+id/textView_VorerkrankungenUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
-                android:gravity="center_horizontal"
-                android:text="@string/vorerkrankungenStammdaten"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="2"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_blutgruppe" />
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_threeToFive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="3 - 5"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_sixToTen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="6 - 10"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_moreThenTen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="> 10"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Personengruppe -->
+            <TextView
+                android:id="@+id/textView_Group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:gravity="center_horizontal"
+                android:text="Personengruppe"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toStartOf="@+id/editText_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_adults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="nur Erwachsene"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_babys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="inklusive Kleinkind(er)"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_children"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="inklusive Kind(er) älter als 6 Jahre"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Beschreibung des Unfalls -->
+            <TextView
+                android:id="@+id/textView_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:gravity="center_horizontal"
+                android:text="Beschreibung des Unfalls"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toStartOf="@+id/editText_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_squeezed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Eingeklemmt"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_fire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Feuer"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_unconscious"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Bewusstlos"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_fleshWound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Fleischwunde"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_brokenBone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="Knochenbruch"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_strongBleeding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:text="starke Blutung"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText_VorerkrankungenUser"
+                android:id="@+id/editText_output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:scrollHorizontally="false"
+                android:singleLine="false"
+                android:inputType="textMultiLine"
+                android:background="@color/SafeGuardWhite"
+                android:textColor="@color/black"
+                android:text="Hier sollte ein Text stehen" />
+
+            <!-- Navigationsbuttons (zurück + Notruf absetzen) -->
+            <Button
+                android:id="@+id/button_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@color/SafeGuardGreen"
+                android:text="Zurück"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button_EmergencyCall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:background="@drawable/sup_rounded_corner_white"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/vorerkrankungenStammdaten"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_blutgruppe" />
-
-        <Button
-            android:id="@+id/button_UpdateUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/sup_rounded_corner_blue"
-            android:fontFamily="@font/bree_serif"
-            android:text="@string/speichernEingabe"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
-
-        <Button
-            android:id="@+id/button_DeleteUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20sp"
-            android:background="@drawable/sup_rounded_corner_blue"
-            android:fontFamily="@font/bree_serif"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/löschenDerStammdaten"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
-
+                android:background="@color/SafeGuardGreen"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Notruf absetzen"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/bree_serif"
+                app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
     </ScrollView>
 
