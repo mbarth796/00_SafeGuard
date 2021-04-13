@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single"
+    <group
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:layout_marginTop="10dp"
@@ -14,9 +15,10 @@
             android:title="@string/menu_home" />
 
     </group>
-    <group android:checkableBehavior="single"
+    <group
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_emergency"
@@ -27,33 +29,50 @@
 
     </group>
 
-    <group android:checkableBehavior="single"
+    <group
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <item
-            android:id="@+id/nav_masterdata"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_masterdata" />
-    </group>
-
-    <group android:checkableBehavior="single"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_firstaid"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_firstaid"
             android:title="@string/menu_firstaid" />
     </group>
 
-    <group android:checkableBehavior="single"
+    <group
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_masterdata"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_form"
+            android:title="@string/menu_masterdata" />
+    </group>
+
+
+    <group
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_contact"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_person"
+            android:title="@string/menu_contact" />
+    </group>
+
+    <group
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_demo"
@@ -61,18 +80,6 @@
             android:layout_marginBottom="10dp"
             android:icon="@drawable/ic_demo"
             android:title="@string/menu_demo" />
-    </group>
-
-    <group android:checkableBehavior="single"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <item
-            android:id="@+id/nav_contact"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:icon="@drawable/ic_form"
-            android:title="@string/menu_contact" />
     </group>
 
 </menu>

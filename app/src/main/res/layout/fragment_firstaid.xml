@@ -10,4 +10,13 @@
         android:layout_height="match_parent"
         android:text="FirstAid" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="300dp"
+        android:text="Inhalt folgt noch"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32dp" />
+
 </FrameLayout>

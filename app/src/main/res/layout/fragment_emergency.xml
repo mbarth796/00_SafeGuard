@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="561dp"
+        android:layout_height="800dp"
+        android:paddingTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="800dp"
             android:orientation="vertical">
 
             <!-- Vorfall / Unfalltyp -->
@@ -26,13 +27,14 @@
                 android:id="@+id/textView_accident"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
                 android:text="Vorfall"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,10 +45,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Verkehrsunfall"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -56,10 +59,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Andere"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Verkehrsunfallart -->
@@ -69,11 +73,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
                 android:text="Art des Verkehrsunfalls"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,10 +89,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Auto"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -97,10 +103,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Motorrad / Fahrrad"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -110,10 +117,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Fußgänger"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Anzahl der Verletzten -->
@@ -123,91 +131,104 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
                 android:text="Anzahl Verletzte"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/button_one"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_blue"
-                android:text="1"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_blue"
-                android:text="2"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <Button
+                    android:id="@+id/button_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/sup_rounded_corner_blue"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <Button
-                android:id="@+id/button_threeToFive"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_blue"
-                android:text="3 - 5"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <Button
+                    android:id="@+id/button_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/sup_rounded_corner_blue"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="2"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <Button
-                android:id="@+id/button_sixToTen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_blue"
-                android:text="6 - 10"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <Button
+                    android:id="@+id/button_threeToFive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/sup_rounded_corner_blue"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="3 - 5"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <Button
-                android:id="@+id/button_moreThenTen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/sup_rounded_corner_blue"
-                android:text="> 10"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <Button
+                    android:id="@+id/button_sixToTen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/sup_rounded_corner_blue"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="6 - 10"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <Button
+                    android:id="@+id/button_moreThenTen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/sup_rounded_corner_blue"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="> 10"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </LinearLayout>
 
             <!-- Personengruppe -->
             <TextView
                 android:id="@+id/textView_Group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
                 android:text="Personengruppe"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -218,10 +239,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="nur Erwachsene"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -231,10 +253,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="inklusive Kleinkind(er)"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -244,10 +267,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="inklusive Kind(er) älter als 6 Jahre"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Beschreibung des Unfalls -->
@@ -257,11 +281,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
                 android:text="Beschreibung des Unfalls"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -272,10 +297,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Eingeklemmt"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -285,10 +311,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Feuer"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -298,10 +325,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Bewusstlos"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -311,10 +339,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Fleischwunde"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -324,10 +353,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
                 android:text="Knochenbruch"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -337,23 +367,25 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
-                android:text="starke Blutung"
+                android:fontFamily="@font/bree_serif"
+                android:text="Starke Blutung"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
                 android:id="@+id/editText_output"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/SafeGuardGrey"
                 android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingTop="5dp"
                 android:scrollHorizontally="false"
                 android:singleLine="false"
-                android:inputType="textMultiLine"
-                android:background="@color/SafeGuardWhite"
-                android:textColor="@color/black"
-                android:text="Hier sollte ein Text stehen" />
+                android:text="Hier sollte ein Text stehen"
+                android:textColor="@color/black" />
 
             <!-- Navigationsbuttons (zurück + Notruf absetzen) -->
             <Button
@@ -363,10 +395,11 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
                 android:background="@color/SafeGuardGreen"
+                android:fontFamily="@font/bree_serif"
                 android:text="Zurück"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
@@ -375,11 +408,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/SafeGuardGreen"
+                android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Notruf absetzen"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:fontFamily="@font/bree_serif"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
     </ScrollView>
