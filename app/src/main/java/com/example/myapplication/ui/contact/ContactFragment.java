@@ -1,7 +1,9 @@
 package com.example.myapplication.ui.contact;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,28 +13,140 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.masterdata.DatabaseHelper1;
+import com.example.myapplication.ui.masterdata.MasterdataViewModel;
 
 public class ContactFragment extends Fragment {
 
-    private ContactViewModel mViewModel;
+    //Variablen die für die Stammdaten relevant sind
+    DatabaseHelper2 myDB;
+    EditText editid, editVorname, editName, editTelefonnummer, editBeziehung;
+    Button buttonAdd_Contact, buttonViewAll_Contact, buttonUpdate_Contact, buttonDelete_Contact;
 
-    public static ContactFragment newInstance() {
-        return new ContactFragment();
+    private ContactViewModel contactViewModel;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        contactViewModel =
+                new ViewModelProvider(this).get(ContactViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_contact, container, false);
+
+        myDB = new DatabaseHelper2(getActivity());
+
+                //Cast für die Eingabefelder
+        editid = (EditText) root.findViewById(R.id.editText_idAnsprechpartner);
+        editVorname = (EditText) root.findViewById(R.id.editText_VornameAnsprechpartner);
+        editName = (EditText) root.findViewById(R.id.editText_NameAnsprechpartner);
+        editTelefonnummer = (EditText) root.findViewById(R.id.editText_TelefonnummerAnsprechpartner);
+        editBeziehung = (EditText) root.findViewById(R.id.editText_BeziehungAnsprechpartner);
+        buttonAdd_Contact = (Button) root.findViewById(R.id.button_AddAnsprechpartner);
+        buttonViewAll_Contact = (Button) root.findViewById(R.id.button_ViewAnsprechpartner);
+        buttonUpdate_Contact = (Button) root.findViewById(R.id.button_UpdateAnsprechpartner);
+        buttonDelete_Contact = (Button) root.findViewById(R.id.button_DeleteAnsprechpartner);
+
+        //Ausführen aller Datenbankmethoden
+        AddData();
+        ViewAll();
+        UpdateData();
+        DeleteData();
+
+        return root;
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+    //DeleteData: Löscht die Daten von der angegebeben id, gibt ein Toast aus ob Vorgang erfolgreich
+    public void DeleteData() {
+        buttonDelete_Contact.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Integer deletedRows = myDB.deleteData(editid.getText().toString());
+                        if(deletedRows > 0) {
+                            Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getActivity(), "Data is not Deleted", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
-        // TODO: Use the ViewModel
+    //UpdateData: Updated die Daten mit den eingegebenen Parametern, gibt Toast aus ob Vorgang erfolgreich
+    public void UpdateData() {
+        buttonUpdate_Contact.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean isUpdated = myDB.updateData(editid.getText().toString(), editVorname.getText().toString(),
+                                editName.getText().toString(), editTelefonnummer.getText().toString(),
+                                editBeziehung.getText().toString());
+                        if(isUpdated == true) {
+                            Toast.makeText(getActivity(), "Data Updated", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getActivity(), "Data is not Updated", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
     }
 
+    // ViewAll: Holt sich zunächst alle Daten und gibt diese dann mithilfe eines buffer aus; showmessage() zum anzeigen der Daten
+    public void ViewAll() {
+        buttonViewAll_Contact.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor result = myDB.getAllData();
+                        if(result.getCount() == 0) {
+                            ShowMessage("Error","Nothing found.");
+                            return;
+                        } else {
+                            StringBuffer buffer = new StringBuffer();
+                            while (result.moveToNext()) {
+                                buffer.append("ID: "+result.getString(0)+"\n");
+                                buffer.append("Vorname: "+result.getString(1)+"\n");
+                                buffer.append("Name: "+result.getString(2)+"\n");
+                                buffer.append("Telefonnummer: "+result.getString(3)+"\n");
+                                buffer.append("Beziehung: "+result.getString(4)+"\n");
+                            }
+                            ShowMessage("Ansprechpartner", buffer.toString());
+                        }
+                    }
+                }
+        );
+    }
+
+    //ShowMessage: Zum Anzeigen der Daten für ViewAll
+    public void ShowMessage(String title,String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
+
+    //AddData: nimmt Parameter entgegen und fügt diese ein, Toast ob Vorgang erfolgreich
+    public void AddData() {
+        buttonAdd_Contact.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean isInserted = myDB.insertData(editVorname.getText().toString(),
+                                editName.getText().toString(), editTelefonnummer.getText().toString(),
+                                editBeziehung.getText().toString());
+                        if (isInserted == true) {
+                            Toast.makeText(getActivity(), "Daten wurden eingepflegt", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(getActivity(), "Data is not inserted", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
+    }
 }

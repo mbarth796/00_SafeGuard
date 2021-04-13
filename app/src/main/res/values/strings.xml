@@ -23,11 +23,20 @@
     <string name="telefonnummerStammdaten">Telefonnummer</string>
     <string name="geburtsdatumStammdaten">Geburtsdatum</string>
     <string name="geburtsdatumFormatStammdaten">Geburtsdatum TT.MM.JJJJ</string>
+    <string name="beziehungAnsprechpartnerHint">Beziehung</string>
     <string name="blutgruppeStammdaten">Blutgruppe</string>
     <string name="rhesusfaktorStammdaten">Rhesusfaktor</string>
     <string name="vorerkrankungenStammdaten">Vorerkrankungen</string>
     <string name="speichernEingabe">Speichern</string>
+    <string name="updateAnsprechpartner">Ansprechpartner ändern</string>
     <string name="löschenDerStammdaten">Stammdaten löschen</string>
+    <string name="deleteAnsprechpartner">Ansprechpartner löschen</string>
+    <string name="viewAnsprechpartner">Ansprechpartner ansehen</string>
+    <string name="addAnsprechpartner">Ansprechpartner hinzufügen</string>
+    <string name="beziehungAnsprechpartner">Beziehung</string>
+    <string name="idAnsprechpartner">ID des Ansprechpartners</string>
+    <string name="idAnsprechpartnerHint">ID des Ansprechpartners</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

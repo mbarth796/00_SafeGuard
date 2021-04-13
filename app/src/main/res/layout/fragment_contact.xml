@@ -1,22 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/SafeGuardLightRed"
     tools:context=".ui.contact.ContactFragment">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Contact" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="300dp"
-        android:text="Inhalt folgt noch"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="32dp" />
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_ViewAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/viewAnsprechpartner"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+
+            <TextView
+                android:id="@+id/textView_VornameAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/vornameStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toStartOf="@+id/editText_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText_VornameAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/vornameStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_NameAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/nachnameStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_name" />
+
+            <EditText
+                android:id="@+id/editText_NameAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/nachnameStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+
+            <TextView
+                android:id="@+id/textView_TelefonnummerAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/telefonnummerStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_geburtsdatum" />
+
+            <EditText
+                android:id="@+id/editText_TelefonnummerAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/telefonnummerStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_geburtsdatum" />
+
+
+            <TextView
+                android:id="@+id/textView_BeziehungAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/beziehungAnsprechpartner"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_erkrankungen" />
+
+
+            <EditText
+                android:id="@+id/editText_BeziehungAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/beziehungAnsprechpartnerHint"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_erkrankungen" />
+
+            <Button
+                android:id="@+id/button_AddAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/addAnsprechpartner"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+
+            <TextView
+                android:id="@+id/textView_idAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/idAnsprechpartner"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_erkrankungen" />
+
+
+            <EditText
+                android:id="@+id/editText_idAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/idAnsprechpartnerHint"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_erkrankungen" />
+
+            <Button
+                android:id="@+id/button_UpdateAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
+                android:text="@string/updateAnsprechpartner"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+
+            <Button
+                android:id="@+id/button_DeleteAnsprechpartner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/deleteAnsprechpartner"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
