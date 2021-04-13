@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/SafeGuardLightRed"
+    tools:context=".ui.masterdata.MasterdataFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_VornameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/vornameStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toStartOf="@+id/editText_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText_VornameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/vornameStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_NameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/nachnameStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_name" />
+
+            <EditText
+                android:id="@+id/editText_NameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/nachnameStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+
+            <TextView
+                android:id="@+id/textView_TelefonnummerUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/telefonnummerStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_geburtsdatum" />
+
+            <EditText
+                android:id="@+id/editText_TelefonnummerUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/telefonnummerStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_geburtsdatum" />
+
+
+            <TextView
+                android:id="@+id/textView_GeburtsdatumUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/geburtsdatumStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_erkrankungen" />
+
+
+            <EditText
+                android:id="@+id/editText_GeburtsdatumUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/geburtsdatumFormatStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_erkrankungen" />
+
+            <TextView
+                android:id="@+id/textView_BlutgruppeUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/blutgruppeStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_allergien" />
+
+            <Spinner
+                android:id="@+id/spinner_blutgruppe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_red"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_allergien"></Spinner>
+
+            <TextView
+                android:id="@+id/textView_RhesusfaktorUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/rhesusfaktorStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_medikation" />
+
+            <Spinner
+                android:id="@+id/spinner_rhesusfaktor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_red"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_allergien"></Spinner>
+
+            <TextView
+                android:id="@+id/textView_VorerkrankungenUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_grey"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal"
+                android:text="@string/vorerkrankungenStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_blutgruppe" />
+
+            <EditText
+                android:id="@+id/editText_VorerkrankungenUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/sup_rounded_corner_white"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/vorerkrankungenStammdaten"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_blutgruppe" />
+
+            <Button
+                android:id="@+id/button_UpdateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
+                android:text="@string/speichernEingabe"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+
+            <Button
+                android:id="@+id/button_DeleteUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sup_rounded_corner_blue"
+                android:fontFamily="@font/bree_serif"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/löschenDerStammdaten"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.myapplication.ui.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_emergency"
+        android:name="com.example.myapplication.ui.emergency.EmergencyFragment"
+        android:label="@string/menu_emergency"
+        tools:layout="@layout/fragment_emergency" />
+
+    <fragment
+        android:id="@+id/nav_masterdata"
+        android:name="com.example.myapplication.ui.masterdata.MasterdataFragment"
+        android:label="@string/menu_masterdata"
+        android:gravity="center_horizontal"
+        tools:layout="@layout/fragment_masterdata" />
+
+    <fragment
+        android:id="@+id/nav_firstaid"
+        android:name="com.example.myapplication.ui.firstaid.FirstaidFragment"
+        android:label="@string/menu_firstaid"
+        android:gravity="center_horizontal"
+        tools:layout="@layout/fragment_firstaid" />
+
+    <fragment
+        android:id="@+id/nav_demo"
+        android:name="com.example.myapplication.ui.demo.DemoFragment"
+        android:label="@string/menu_demo"
+        android:gravity="center_horizontal"
+        tools:layout="@layout/fragment_demo" />
+
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.example.myapplication.ui.contact.ContactFragment"
+        android:label="@string/menu_contact"
+        android:gravity="center_horizontal"
+        tools:layout="@layout/fragment_contact" />
+</navigation>

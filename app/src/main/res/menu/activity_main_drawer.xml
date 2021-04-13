@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+        <item
+            android:id="@+id/nav_home"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+
+    </group>
+    <group android:checkableBehavior="single"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <item
+            android:id="@+id/nav_emergency"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_emergency"
+            android:title="@string/menu_emergency" />
+
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <item
+            android:id="@+id/nav_masterdata"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_masterdata" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <item
+            android:id="@+id/nav_firstaid"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_firstaid" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <item
+            android:id="@+id/nav_demo"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_demo"
+            android:title="@string/menu_demo" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <item
+            android:id="@+id/nav_contact"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:icon="@drawable/ic_form"
+            android:title="@string/menu_contact" />
+    </group>
+
+</menu>

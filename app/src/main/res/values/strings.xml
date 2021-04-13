@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">SafeGuard</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--Strings fuer Menu-->
+    <string name="menu_home">Home</string>
+    <string name="menu_emergency">Notruf</string>
+    <string name="menu_demo">Demo</string>
+    <string name="menu_firstaid">Erste-Hilfe-Maßnahmen</string>
+    <string name="menu_contact">Notfallkontakt</string>
+    <string name="menu_masterdata">Stammdaten</string>
+
+
+    <!--Strings fuer Stammdaten-->
+    <string name="vornameStammdaten">Vorname</string>
+    <string name="nachnameStammdaten">Nachname</string>
+    <string name="telefonnummerStammdaten">Telefonnummer</string>
+    <string name="geburtsdatumStammdaten">Geburtsdatum</string>
+    <string name="geburtsdatumFormatStammdaten">Geburtsdatum TT.MM.JJJJ</string>
+    <string name="blutgruppeStammdaten">Blutgruppe</string>
+    <string name="rhesusfaktorStammdaten">Rhesusfaktor</string>
+    <string name="vorerkrankungenStammdaten">Vorerkrankungen</string>
+    <string name="speichernEingabe">Speichern</string>
+    <string name="löschenDerStammdaten">Stammdaten löschen</string>
+</resources>
