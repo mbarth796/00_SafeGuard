@@ -1,11 +1,11 @@
 package com.example.myapplication.ui.masterdata;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -22,65 +22,57 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication.ui.emergency.EmergencyViewModel;
+import com.example.myapplication.ui.firstaid.FirstaidFragment;
+import com.example.myapplication.ui.firstaid.FirstaidViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.example.myapplication.R;
 
-public class MasterdataFragment extends FragmentActivity {
+public class MasterdataFragment extends Fragment {
 
 
     //Variablen die für die Stammdaten relevant sind
     DatabaseHelper1 myDB;
     EditText editVorname, editName, editTelefonnummer, editGeburtsdatum, editVorerkrankungen;
+    TextView vornameStammdatenView, nameStammdatenView, telefonnummerStammdatenView, geburtsdatumStammdatenView, vorerkrankungenStammdatenView;
     String blutgruppeNames[] ={"A","B","AB","0"}, rhesusfaktorNames[]={"+","-"}, vornameStammdaten, nameStammdaten, telefonnummerStammdaten, geburtsdatumStammdaten, blutgruppeStammdaten, rhesusfaktorStammdaten, vorerkrankungenStammdaten, editBlutgruppe, editRhesusfaktor;
     Button buttonUpdate_Data, buttonDelete_Data;
-    ImageButton button_navigation, button_home;
     Spinner blutgruppeSpinner, rhesusfaktorSpinner;
     ArrayAdapter<String> blutgruppeArrayAdapter, rhesusfaktorArrayAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_masterdata);
-         myDB = new DatabaseHelper1(this);
+    private MasterdataViewModel masterdataViewModel;
 
-        editVorname = (EditText) findViewById(R.id.editText_VornameUser);
-        editName = (EditText) findViewById(R.id.editText_NameUser);
-        editTelefonnummer = (EditText)findViewById(R.id.editText_TelefonnummerUser);
-        editGeburtsdatum = (EditText)findViewById(R.id.editText_GeburtsdatumUser);
-        editVorerkrankungen = (EditText) findViewById(R.id.editText_VorerkrankungenUser);
-        buttonUpdate_Data = (Button) findViewById(R.id.button_UpdateUser);
-        buttonDelete_Data = (Button) findViewById(R.id.button_DeleteUser);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        masterdataViewModel =
+                new ViewModelProvider(this).get(MasterdataViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_masterdata, container, false);
+
+        myDB = new DatabaseHelper1(getActivity());
+
+        editVorname = (EditText) root.findViewById(R.id.editText_VornameUser);
+        editName = (EditText) root.findViewById(R.id.editText_NameUser);
+        editTelefonnummer = (EditText) root.findViewById(R.id.editText_TelefonnummerUser);
+        editGeburtsdatum = (EditText) root.findViewById(R.id.editText_GeburtsdatumUser);
+        editVorerkrankungen = (EditText) root.findViewById(R.id.editText_VorerkrankungenUser);
+        buttonUpdate_Data = (Button) root.findViewById(R.id.button_UpdateUser);
+        buttonDelete_Data = (Button) root.findViewById(R.id.button_DeleteUser);
+        vornameStammdatenView = (TextView) root.findViewById(R.id.editText_VornameUser);
+        nameStammdatenView = (TextView) root.findViewById(R.id.editText_NameUser);
+        telefonnummerStammdatenView = (TextView) root.findViewById(R.id.editText_TelefonnummerUser);
+        geburtsdatumStammdatenView = (TextView) root.findViewById(R.id.editText_GeburtsdatumUser);
+        vorerkrankungenStammdatenView = (TextView) root.findViewById(R.id.editText_VorerkrankungenUser);
+        blutgruppeSpinner = (Spinner) root.findViewById(R.id.spinner_blutgruppe);
+        rhesusfaktorSpinner = (Spinner) root.findViewById(R.id.spinner_rhesusfaktor);
 
         ViewStammdatenUser();
         DeleteData();
         updateStammdatenData();
-/*
-        button_navigation = (ImageButton) findViewById(R.id.imageButton4);
-        button_navigation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v2) {
-                openNavigation();
-            }
-        });
 
-        button_home = (ImageButton) findViewById(R.id.imageButton);
-        button_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v2) {
-                openHome();
-            }
-        });*/
-    }
-/*
-    public void openNavigation () {
-        Intent navigation = new Intent(this, MainActivity_Navigation.class);
-        startActivity(navigation);
+        return root;
     }
 
-    public void openHome () {
-        Intent home = new Intent(this, MainActivity.class);
-        startActivity(home);
-    }*/
 
     //DelteData: Löscht die Daten von der angegebeben id, gibt ein Toast aus ob Vorgang erfolgreich
     public void DeleteData() {
@@ -90,9 +82,9 @@ public class MasterdataFragment extends FragmentActivity {
                     public void onClick(View v) {
                         boolean isDeleted = myDB.deleteData("1");
                         if(isDeleted == true) {
-                            Toast.makeText(MasterdataFragment.this, "Data Deleted", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MasterdataFragment.this, "Data is not Deleted", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Data is not Deleted", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -109,9 +101,9 @@ public class MasterdataFragment extends FragmentActivity {
                                 editTelefonnummer.getText().toString(), editGeburtsdatum.getText().toString(), editBlutgruppe,
                                 editRhesusfaktor, editVorerkrankungen.getText().toString());
                         if(isUpdated == true) {
-                            Toast.makeText(MasterdataFragment.this, "Data Updated", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Data Updated", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MasterdataFragment.this, "Data is not Updated", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Data is not Updated", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -122,11 +114,7 @@ public class MasterdataFragment extends FragmentActivity {
     public void ViewStammdatenUser() {
 
         Cursor cursor = myDB.getStammdatenData();
-        TextView vornameStammdatenView = (TextView) findViewById(R.id.editText_VornameUser);
-        TextView nameStammdatenView = (TextView) findViewById(R.id.editText_NameUser);
-        TextView telefonnummerStammdatenView= (TextView) findViewById(R.id.editText_TelefonnummerUser);
-        TextView geburtsdatumStammdatenView= (TextView) findViewById(R.id.editText_GeburtsdatumUser);
-        TextView vorerkrankungenStammdatenView = (TextView) findViewById(R.id.editText_VorerkrankungenUser);
+
 
         if(cursor.moveToFirst()) {
             vornameStammdaten = cursor.getString(1);
@@ -142,8 +130,8 @@ public class MasterdataFragment extends FragmentActivity {
             geburtsdatumStammdatenView.setText(geburtsdatumStammdaten);
 
             blutgruppeStammdaten = cursor.getString(5);
-            blutgruppeSpinner = (Spinner) findViewById(R.id.spinner_blutgruppe);
-            blutgruppeArrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,blutgruppeNames);
+
+            blutgruppeArrayAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,blutgruppeNames);
             blutgruppeSpinner.setAdapter(blutgruppeArrayAdapter);
 
             if(blutgruppeStammdaten.equals("A")) {
@@ -171,8 +159,8 @@ public class MasterdataFragment extends FragmentActivity {
             });
 
             rhesusfaktorStammdaten = cursor.getString(6);
-            rhesusfaktorSpinner = (Spinner) findViewById(R.id.spinner_rhesusfaktor);
-            rhesusfaktorArrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,rhesusfaktorNames);
+
+            rhesusfaktorArrayAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,rhesusfaktorNames);
             rhesusfaktorSpinner.setAdapter(rhesusfaktorArrayAdapter);
 
             if(rhesusfaktorStammdaten.equals("+")) {

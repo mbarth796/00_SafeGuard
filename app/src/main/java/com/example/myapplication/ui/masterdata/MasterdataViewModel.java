@@ -33,10 +33,20 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MasterdataViewModel extends  AppCompatActivity {
-    // TODO: Implement the ViewModel
+public class MasterdataViewModel extends  ViewModel {
 
+    private MutableLiveData<String> mText;
 
+    public MasterdataViewModel() {
+        mText = new MutableLiveData<>();
+        mText.setValue("This is masterdata fragment");
+    }
+
+    public LiveData<String> getText() {
+        return mText;
+    }
 }
