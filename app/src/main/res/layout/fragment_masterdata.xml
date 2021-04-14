@@ -164,14 +164,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/spinner_blutgruppe"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/sup_rounded_corner_red"
+                    android:layout_weight="1"
+                    android:background="@drawable/sup_rounded_corner_white"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="12sp"
@@ -180,10 +181,11 @@
 
                 <Spinner
                     android:id="@+id/spinner_rhesusfaktor"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/sup_rounded_corner_red"
+                    android:layout_weight="1"
+                    android:background="@drawable/sup_rounded_corner_white"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="12sp"
@@ -193,18 +195,17 @@
 
             <TextView
                 android:id="@+id/textView_RhesusfaktorUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
                 android:text="@string/rhesusfaktorStammdaten"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="0sp"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_medikation"
-                android:visibility="invisible"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView_medikation" />
 
             <TextView
                 android:id="@+id/textView_VorerkrankungenUser"
@@ -246,6 +247,7 @@
                 android:background="@drawable/sup_rounded_corner_blue"
                 android:fontFamily="@font/bree_serif"
                 android:text="@string/speichernEingabe"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -260,6 +262,7 @@
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/löschenDerStammdaten"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
