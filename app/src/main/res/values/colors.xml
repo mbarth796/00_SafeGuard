@@ -13,4 +13,5 @@
     <color name="SafeGuardGrey">#E7E6E6</color>
     <color name="SafeGuardWhite">#FFFFFF</color>
     <color name="SafeGuardGreen">#32AC41</color>
+    <color name="SafeGuardDarkRed">#DF282B</color>
 </resources>

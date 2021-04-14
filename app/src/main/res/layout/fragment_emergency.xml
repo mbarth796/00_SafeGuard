@@ -9,8 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="800dp"
-        android:paddingTop="100dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="800dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <!-- Vorfall / Unfalltyp -->
@@ -27,7 +26,7 @@
                 android:id="@+id/textView_accident"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
@@ -394,11 +393,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="10dp"
-                android:background="@color/SafeGuardGreen"
+                android:background="@drawable/sup_rounded_corner_green"
                 android:fontFamily="@font/bree_serif"
+                android:paddingBottom="10dp"
                 android:text="Zurück"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -407,12 +407,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/SafeGuardGreen"
+                android:background="@drawable/sup_rounded_corner_green"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal|center_vertical"
+                android:paddingBottom="10dp"
                 android:text="Notruf absetzen"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
