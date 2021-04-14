@@ -1,6 +1,9 @@
 package com.example.myapplication.ui.emergency;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 
 import com.example.myapplication.R;
+import com.google.android.material.snackbar.Snackbar;
 
 public class EmergencyFragment extends Fragment {
 
@@ -105,6 +112,9 @@ public class EmergencyFragment extends Fragment {
                     accident = 0;
                     buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
                     buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    //so wünscht android studio sich das
+                    //buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red,null));
+                    //buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue,null));
                     setTrafficAccidentTypeVisible();
                 } else if(accident == 0){
                     accident = -1;
@@ -119,6 +129,8 @@ public class EmergencyFragment extends Fragment {
                 buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
                 buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
                 //Anzeigen eines Fehlerbildschirms bzw. Weiterleitung zum normalen Anruf
+                Snackbar.make(view, "Bitte Rufen Sie den Notruf normal an, dies wird in der App noch nicht unterstützt", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
@@ -346,7 +358,7 @@ public class EmergencyFragment extends Fragment {
         buttonFleshWound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fleshWound != 1) {
+                if(fleshWound == 1) {
                     fleshWound = 1;
                     buttonFleshWound.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
@@ -387,6 +399,7 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editTextOutput.setText(generateText());
+                sendEmergencyMessage();
             }
         });
 
@@ -530,11 +543,11 @@ public class EmergencyFragment extends Fragment {
         }
 
         if(group == 0){
-            ret = ret + "nur erwachsene Personen, ";
+            ret = ret + "nur erwachsene Personen, " + "\n";
         } else if(group == 1){
-            ret = ret + "inklusive Kleinkind(er)) (unter 6 Jahre), ";
+            ret = ret + "inklusive Kleinkind(er)) (unter 6 Jahre), " + "\n";
         } else if(group == 2){
-            ret = ret + "inklusive Kinder, ";
+            ret = ret + "inklusive Kinder, " + "\n";
         }
 
         if(squeezed == 1){
@@ -557,5 +570,19 @@ public class EmergencyFragment extends Fragment {
         }
 
         return ret;
+    }
+
+    public void sendEmergencyMessage(){
+        if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage("+491749823050", null, generateText(), null, null);
+            Snackbar.make(this.getView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }else{
+            Snackbar.make(this.getView(), "Bitte erteilen Sie die Berechtigung für SMS in den Einstellungen", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+
+
     }
 }
