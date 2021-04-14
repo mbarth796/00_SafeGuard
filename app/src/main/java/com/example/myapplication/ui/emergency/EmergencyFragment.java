@@ -358,7 +358,7 @@ public class EmergencyFragment extends Fragment {
         buttonFleshWound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fleshWound == 1) {
+                if(fleshWound != 1) {
                     fleshWound = 1;
                     buttonFleshWound.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
