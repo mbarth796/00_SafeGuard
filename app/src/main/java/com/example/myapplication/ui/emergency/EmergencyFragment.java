@@ -14,10 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.masterdata.MasterdataFragment;
@@ -399,38 +402,15 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editTextOutput.setText(generateText());
-                //sendEmergencyMessage();
+                sendEmergencyMessage();
             }
         });
 
-
-
-/**
- setListener(buttonTrafficAccident,1, "accident");
- setListener(buttonOtherAccident,0, "accident"); //Sonderfall: Meldung bzw. Starten Telefonat 112
- setListener(buttonCar,0, "trafficAccidentType");
- setListener(buttonBike,1, "trafficAccidentType");
- setListener(buttonOtherAccident,2, "trafficAccidentType"); //Sonderfall: Meldung bzw. Starten Telefonat 112
-
- setListener(button1,1, "AmountHurt");
- setListener(button2,2, "AmountHurt");
- setListener(button3to5,3, "AmountHurt");
- setListener(button6to10,6, "AmountHurt");
- setListener(buttonMoreThenTen,11, "AmountHurt");
- setListener(buttonAdults,0, "group");
- setListener(buttonBabys,1, "group");
- setListener(buttonChildren,2, "group");
- setListener(buttonSqueezed,1, "squeezed");
- setListener(buttonFire,1, "fire");
- setListener(buttonUnconscious,1, "unconscious");
- setListener(buttonFleshWound,1, "fleshWound");
- setListener(buttonBrokenBone,1, "brokenBone");
- setListener(buttonStrongBleeding,1, "strongBleed");
- */
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 resetFlags();
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
             }
         });
 
@@ -439,6 +419,7 @@ public class EmergencyFragment extends Fragment {
         return root;
     }
 
+    //setzt alle Flags zurück, auf ungültige Werte
     public void resetFlags(){
         accident = -1;
         trafficAccidentType = -1;
@@ -452,12 +433,15 @@ public class EmergencyFragment extends Fragment {
         strongBleed = -1;
     }
 
+    //setzt den Block zur Angabe des Verkehrsunfalltyps aus Überschrift und Buttons auf sichtar
     public void setTrafficAccidentTypeVisible(){
         tvTrafficAccidentType.setVisibility(View.VISIBLE);
         buttonCar.setVisibility(View.VISIBLE);
         buttonBike.setVisibility(View.VISIBLE);
         buttonPedestrian.setVisibility(View.VISIBLE);
     }
+
+    //setzt den Block zur Angabe des Verkehrsunfalltyps aus Überschrift und Buttons auf unsichtbar
     public void setTrafficAccidentTypeInvisible(){
         tvTrafficAccidentType.setVisibility(View.GONE);
         buttonCar.setVisibility(View.GONE);
@@ -465,6 +449,7 @@ public class EmergencyFragment extends Fragment {
         buttonPedestrian.setVisibility(View.GONE);
     }
 
+    //setzt den Block zur Anzahl der verletzten Personen aus Überschrift und Buttons auf sichtbar
     public void setAmountHurtVisible(){
         tvAmountHurt.setVisibility(View.VISIBLE);
         button1.setVisibility(View.VISIBLE);
@@ -473,6 +458,8 @@ public class EmergencyFragment extends Fragment {
         button6to10.setVisibility(View.VISIBLE);
         buttonMoreThenTen.setVisibility(View.VISIBLE);
     }
+
+    //setzt den Block zur Anzahl der verletzten Personen aus Überschrift und Buttons auf unsichtbar
     public void setAmountHurtInvisible(){
         tvAmountHurt.setVisibility(View.GONE);
         button1.setVisibility(View.GONE);
@@ -482,12 +469,15 @@ public class EmergencyFragment extends Fragment {
         buttonMoreThenTen.setVisibility(View.GONE);
     }
 
+    //setzt den Block zur Personengruppe aus Überschrift und Buttons auf sichtbar
     public void setGroupVisible(){
         tvGroup.setVisibility(View.VISIBLE);
         buttonAdults.setVisibility(View.VISIBLE);
         buttonBabys.setVisibility(View.VISIBLE);
         buttonChildren.setVisibility(View.VISIBLE);
     }
+
+    //setzt den Block zur Personengruppe aus Überschrift und Buttons auf unsichtbar
     public void setGroupInvisible(){
         tvGroup.setVisibility(View.GONE);
         buttonAdults.setVisibility(View.GONE);
@@ -495,6 +485,7 @@ public class EmergencyFragment extends Fragment {
         buttonChildren.setVisibility(View.GONE);
     }
 
+    //setzt den Block zur Beschreibung aus Überschrift und Buttons auf sichtbar
     public void setDescriptionVisible(){
         tvDescription.setVisibility(View.VISIBLE);
         buttonSqueezed.setVisibility(View.VISIBLE);
@@ -504,6 +495,8 @@ public class EmergencyFragment extends Fragment {
         buttonBrokenBone.setVisibility(View.VISIBLE);
         buttonStrongBleeding.setVisibility(View.VISIBLE);
     }
+
+    //setzt den Block zur Beschreibung aus Überschrift und Buttons auf unsichtbar
     public void setDescriptionInvisible(){
         tvDescription.setVisibility(View.GONE);
         buttonSqueezed.setVisibility(View.GONE);
@@ -514,6 +507,7 @@ public class EmergencyFragment extends Fragment {
         buttonStrongBleeding.setVisibility(View.GONE);
     }
 
+    //Erstellt einen String aus den Flags des Notrufs, welcher durch das Klicken der Buttons gesetzt wurden
     public String generateText(){
         String ret="";
 
@@ -525,13 +519,14 @@ public class EmergencyFragment extends Fragment {
         }
         ret = "Anrufer: " + buffer.toString();
 
+        //Unfalltyp
         if(accident == 0){
             ret = ret + "Verkehrsunfall: ";
         } else {
             ret = "Fehler, accident ist nicht 1(=Verkehrsunfall) ";
             return "Fehler, accident ist nicht 1";
         }
-
+        //Art des Verkehrsunfalls
         if(trafficAccidentType == 0){
             ret=ret + "Autounfall, ";
         } else if(trafficAccidentType == 1){
@@ -539,7 +534,7 @@ public class EmergencyFragment extends Fragment {
         }else if(trafficAccidentType == 1){
             ret = ret + "Fußgänger, ";
         }
-
+        //Anzahl Verletzte
         if(amountHurt == 1){
             ret = ret + "eine verletzte Person, ";
         } else if(amountHurt == 2){
@@ -551,7 +546,7 @@ public class EmergencyFragment extends Fragment {
         } else if(amountHurt == 11){
             ret = ret + "mehr als 10 verletzte Personen, ";
         }
-
+        //Personengruppe
         if(group == 0){
             ret = ret + "nur erwachsene Personen, " + "\n";
         } else if(group == 1){
@@ -559,7 +554,7 @@ public class EmergencyFragment extends Fragment {
         } else if(group == 2){
             ret = ret + "inklusive Kinder, " + "\n";
         }
-
+        //Beschreibung
         if(squeezed == 1){
             ret= ret + "Eingequetschte Person(en)" + "\n";
         }
@@ -582,15 +577,24 @@ public class EmergencyFragment extends Fragment {
         return ret;
     }
 
+    //absenden der SMS mit den Notrufdaten
     public void sendEmergencyMessage(){
-        if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+        //Check ob Permissions da sind
+        if (ActivityCompat.checkSelfPermission(getActivity()/*this.getContext()*/, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage("+491749823050", null, generateText(), null, null);
             Snackbar.make(this.getView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }else{
-            Snackbar.make(this.getView(), "Bitte erteilen Sie die Berechtigung für SMS in den Einstellungen", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+           // Snackbar.make(this.getView(), "Bitte erteilen Sie die Berechtigung für SMS in den Einstellungen", Snackbar.LENGTH_LONG)
+             //       .setAction("Action", null).show();
+            askPermission();
         }
+    }
+
+    //prüft, ob die Berechtigung zur SMS-Versendung gegeben wurde
+    public void askPermission() {
+        // Ask permissions
+        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
     }
 }

@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_notruf"
+        android:id="@+id/button_emergencyCall"
         android:layout_width="match_parent"
         android:layout_height="233dp"
         android:layout_gravity="center_horizontal|center_vertical"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.361" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_firstAid"
         android:layout_width="match_parent"
         android:layout_height="85dp"
         android:layout_gravity="center_horizontal|center_vertical"
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_notruf"
+        app:layout_constraintTop_toBottomOf="@+id/button_emergencyCall"
         app:layout_constraintVertical_bias="0.732" />
 
     <ImageView
