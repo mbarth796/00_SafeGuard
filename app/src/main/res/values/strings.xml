@@ -16,6 +16,38 @@
     <string name="menu_contact">Notfallkontakt</string>
     <string name="menu_masterdata">Stammdaten</string>
 
+    <!-- Strings für Notruf-->
+    <string name="emergency_accident">Vorfall</string>
+    <string name="emergency_trafficAccident">Verkehrsunfall</string>
+    <string name="emergency_OtherAccident">Andere</string>
+    <string name="emergency_accidentType">Art des verkehrsunfalls</string>
+    <string name="emergency_car">Auto</string>
+    <string name="emergency_bike">Motorrad / Fahrrad</string>
+    <string name="emergency_pedestrian">Fußgänger</string>
+    <string name="emergency_amountHurt">Anzahl Verletzte</string>
+    <string name="emergency_One">1</string>
+    <string name="emergency_Two">2</string>
+    <string name="emergency_3to5">3 - 5</string>
+    <string name="emergency_6to10">6 - 10</string>
+    <string name="emergency_moreThanTen">> 10</string>
+    <string name="emergency_group">Personengruppe</string>
+    <string name="emergency_adults">nur Erwachsene</string>
+    <string name="emergency_babys">inklusive Kleinkind(er)</string>
+    <string name="emergency_children">inklusive Kind(er) > 6</string>
+    <string name="emergency_description">beschreibung des Unfalls</string>
+    <string name="emergency_squeezed">Eingeklemmt</string>
+    <string name="emergency_fire">Feuer</string>
+    <string name="emergency_unconscious">Bewusstlos</string>
+    <string name="emergency_fleshWound">Fleischwunde</string>
+    <string name="emergency_brokenBone">Knochenbruch</string>
+    <string name="emergency_strongBleeding">Starke Blutung</string>
+    <string name="emergency_specialInformation">"*Nach Wahl genauere Beschreibung des Unfalls*"</string>
+    <string name="emergency_emergencyCall">Notruf absetzen</string>
+    <string name="emergency_back">Zurück</string>
+
+
+
+
 
     <!--Strings fuer Stammdaten-->
     <string name="vornameStammdaten">Vorname</string>
