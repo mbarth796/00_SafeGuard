@@ -401,9 +401,10 @@ public class EmergencyFragment extends Fragment {
         buttonEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(checkFlags()){
+                    sendEmergencyMessage();
+                }
                 editTextSpecialInformation.setText(generateText());
-                sendEmergencyMessage();
-
             }
         });
 
@@ -510,6 +511,19 @@ public class EmergencyFragment extends Fragment {
         buttonBrokenBone.setVisibility(View.GONE);
         buttonStrongBleeding.setVisibility(View.GONE);
         editTextSpecialInformation.setVisibility(View.GONE);
+    }
+
+    //gibt true zurück, wenn in jeder Kategorie mindestens ein Button ausgewählt ist
+    public boolean checkFlags(){
+        if(accident != -1 && trafficAccidentType != -1 && amountHurt != -1 && group != -1 &&
+                !(squeezed == -1 && fire == -1 && unconscious == -1 && fleshWound == -1 && brokenBone == -1 && strongBleed == -1 &&
+                        editTextSpecialInformation.getText().toString().equals(""))){
+            return true;
+        } else {
+            Snackbar.make(this.requireView(), "Bitte machen Sie zu jeder Kategorie eine Angabe", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return false;
+        }
     }
 
     //Erstellt einen String aus den Flags des Notrufs, welcher durch das Klicken der Buttons gesetzt wurden
