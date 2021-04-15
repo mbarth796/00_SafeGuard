@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -21,6 +22,8 @@ import androidx.navigation.Navigation;
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 public class EmergencyFragment extends Fragment {
 
@@ -110,15 +113,15 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(accident != 0){
                     accident = 0;
-                    buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    //buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    //buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
                     //so wünscht android studio sich das
-                    //buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red,null));
-                    //buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue,null));
+                    buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setTrafficAccidentTypeVisible();
-                } else if(accident == 0){
+                } else {
                     accident = -1;
-                    buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -126,8 +129,8 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 accident = 1;
-                buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 //Anzeigen eines Fehlerbildschirms bzw. Weiterleitung zum normalen Anruf
                 Snackbar.make(view, "Bitte Rufen Sie den Notruf normal an, dies wird in der App noch nicht unterstützt", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -140,13 +143,13 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(trafficAccidentType != 0){
                     trafficAccidentType = 0;
-                    buttonCar.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonBike.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonPedestrian.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
-                } else if (trafficAccidentType == 0){
+                } else {
                     trafficAccidentType = -1;
-                    buttonCar.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -155,13 +158,13 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(trafficAccidentType != 1){
                     trafficAccidentType = 1;
-                    buttonBike.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonCar.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonPedestrian.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
-                } else if (trafficAccidentType == 1){
+                } else {
                     trafficAccidentType = -1;
-                    buttonBike.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -170,13 +173,13 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(trafficAccidentType != 2) {
                     trafficAccidentType = 2;
-                    buttonPedestrian.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonCar.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonBike.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
-                } else if (trafficAccidentType == 2){
+                } else {
                     trafficAccidentType = -1;
-                    buttonPedestrian.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -187,15 +190,15 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(amountHurt != 1) {
                     amountHurt = 1;
-                    button1.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    button2.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button3to5.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button6to10.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonMoreThenTen.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
-                } else if (amountHurt == 1){
+                } else {
                     amountHurt = -1;
-                    button1.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -204,15 +207,15 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(amountHurt != 2) {
                     amountHurt = 2;
-                    button2.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    button1.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button3to5.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button6to10.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonMoreThenTen.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
-                } else if (amountHurt == 2){
+                } else {
                     amountHurt = -1;
-                    button2.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -221,15 +224,15 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(amountHurt != 3) {
                     amountHurt = 3;
-                    button3to5.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    button1.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button2.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button6to10.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonMoreThenTen.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
-                } else if (amountHurt == 3){
+                } else {
                     amountHurt = -1;
-                    button3to5.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -238,15 +241,15 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(amountHurt != 6) {
                     amountHurt = 6;
-                    button6to10.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    button1.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button2.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button3to5.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonMoreThenTen.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
-                } else if (amountHurt == 6){
+                } else {
                     amountHurt = -1;
-                    button6to10.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -255,15 +258,15 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(amountHurt != 11) {
                     amountHurt = 11;
-                    buttonMoreThenTen.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    button1.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button2.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button3to5.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    button6to10.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
-                } else if (amountHurt == 11){
+                } else {
                     amountHurt = -1;
-                    buttonMoreThenTen.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -274,13 +277,13 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(group != 0) {
                     group = 0;
-                    buttonAdults.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonBabys.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonChildren.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
-                } else if (group == 0){
+                } else {
                     group = -1;
-                    buttonAdults.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -289,13 +292,13 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(group != 1) {
                     group = 1;
-                    buttonBabys.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonAdults.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonChildren.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
-                } else if (group == 1){
+                } else {
                     group = -1;
-                    buttonBabys.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -304,13 +307,13 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(group != 2) {
                     group = 2;
-                    buttonChildren.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
-                    buttonAdults.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonBabys.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
-                } else if (group == 2){
+                } else {
                     group = -1;
-                    buttonChildren.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -321,11 +324,11 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(squeezed != 1) {
                     squeezed = 1;
-                    buttonSqueezed.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
-                } else if (squeezed == 1){
-                    group = -1;
-                    buttonSqueezed.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                } else {
+                    squeezed = -1;
+                    buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -334,11 +337,11 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(fire != 1) {
                     fire = 1;
-                    buttonFire.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
-                } else if (fire == 1){
-                    group = -1;
-                    buttonFire.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                } else {
+                    fire = -1;
+                    buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -347,11 +350,11 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(unconscious != 1) {
                     unconscious = 1;
-                    buttonUnconscious.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
-                } else if (unconscious == 1){
+                } else {
                     unconscious = -1;
-                    buttonUnconscious.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -360,11 +363,11 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(fleshWound != 1) {
                     fleshWound = 1;
-                    buttonFleshWound.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
-                } else if (fleshWound == 1){
+                } else {
                     fleshWound = -1;
-                    buttonFleshWound.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -373,11 +376,11 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(brokenBone != 1) {
                     brokenBone = 1;
-                    buttonBrokenBone.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
-                } else if (brokenBone == 1){
+                } else {
                     brokenBone = -1;
-                    buttonBrokenBone.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -386,11 +389,11 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(strongBleed != 1) {
                     strongBleed = 1;
-                    buttonStrongBleeding.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
+                    buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
-                } else if (strongBleed == 1){
+                } else {
                     strongBleed = -1;
-                    buttonStrongBleeding.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
+                    buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -408,7 +411,7 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 resetFlags();
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
+                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).popBackStack();
             }
         });
 
@@ -511,7 +514,7 @@ public class EmergencyFragment extends Fragment {
 
     //Erstellt einen String aus den Flags des Notrufs, welcher durch das Klicken der Buttons gesetzt wurden
     public String generateText(){
-        String ret="";
+        String ret;
 
         Cursor result = myDB.getMasterData();
         StringBuffer buffer = new StringBuffer();
@@ -525,28 +528,27 @@ public class EmergencyFragment extends Fragment {
         if(accident == 0){
             ret = ret + "Verkehrsunfall: ";
         } else {
-            ret = "Fehler, accident ist nicht 1(=Verkehrsunfall) ";
             return "Fehler, accident ist nicht 1";
         }
         //Art des Verkehrsunfalls
         if(trafficAccidentType == 0){
-            ret=ret + "Autounfall, ";
+            ret=ret + "Autounfall, " + "\n";
         } else if(trafficAccidentType == 1){
-            ret = ret + "Motorrad bzw. Fahrradunfall, ";
-        }else if(trafficAccidentType == 1){
-            ret = ret + "Fußgänger, ";
+            ret = ret + "Motorrad bzw. Fahrradunfall, " + "\n";
+        }else if(trafficAccidentType == 2){
+            ret = ret + "Fußgänger, " + "\n";
         }
         //Anzahl Verletzte
         if(amountHurt == 1){
-            ret = ret + "eine verletzte Person, ";
+            ret = ret + "eine verletzte Person, " + "\n";
         } else if(amountHurt == 2){
-            ret = ret + "zwei verletzte Personen, ";
+            ret = ret + "zwei verletzte Personen, " + "\n";
         } else if(amountHurt == 3){
-            ret = ret + "3 bis 5 verletzte Personen, ";
+            ret = ret + "3 bis 5 verletzte Personen, " + "\n";
         } else if(amountHurt == 6){
-            ret = ret + "6 bis 10 verletzte Personen, ";
+            ret = ret + "6 bis 10 verletzte Personen, "  + "\n";
         } else if(amountHurt == 11){
-            ret = ret + "mehr als 10 verletzte Personen, ";
+            ret = ret + "mehr als 10 verletzte Personen, "  + "\n";
         }
         //Personengruppe
         if(group == 0){
@@ -586,25 +588,22 @@ public class EmergencyFragment extends Fragment {
     //absenden der SMS mit den Notrufdaten
     public void sendEmergencyMessage(){
         //Check ob Permissions da sind
-        if (ActivityCompat.checkSelfPermission(getActivity()/*this.getContext()*/, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             //Senden von einer SMS mit den Daten und einer weiteren mit der genaueren Beschreibung
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage("+491749823050", null, generateText(), null, null);
-            if(!editTextSpecialInformation.getText().equals("")){
+            if(!editTextSpecialInformation.getText().toString().equals("")){
                 smsManager.sendTextMessage("+491749823050", null, editTextSpecialInformation.getText().toString(), null, null);
             }
-            Snackbar.make(this.getView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
+            Snackbar.make(this.requireView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }else{
-           // Snackbar.make(this.getView(), "Bitte erteilen Sie die Berechtigung für SMS in den Einstellungen", Snackbar.LENGTH_LONG)
-             //       .setAction("Action", null).show();
             askPermission();
         }
     }
 
     //prüft, ob die Berechtigung zur SMS-Versendung gegeben wurde
     public void askPermission() {
-        // Ask permissions
         requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
     }
 }
