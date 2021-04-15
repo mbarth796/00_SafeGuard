@@ -2,6 +2,7 @@ package com.example.myapplication.ui.emergency;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.masterdata.MasterdataFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 public class EmergencyFragment extends Fragment {
@@ -514,10 +516,20 @@ public class EmergencyFragment extends Fragment {
 
     public String generateText(){
         String ret="";
+
+        Cursor result = myDB.getMasterData();
+        StringBuffer buffer = new StringBuffer();
+        while (result.moveToNext()) {
+            buffer.append(result.getString(1) + " ");
+            buffer.append(result.getString(2) + "\n");
+        }
+        ret = "Anrufer: " + buffer.toString();
+
         if(accident == 0){
             ret = "Verkehrsunfall: ";
         } else {
             ret = "Fehler, accident ist nicht 1(=Verkehrsunfall) ";
+            return "Fehler, accident ist nicht 1";
         }
 
         if(trafficAccidentType == 0){
@@ -580,7 +592,5 @@ public class EmergencyFragment extends Fragment {
             Snackbar.make(this.getView(), "Bitte erteilen Sie die Berechtigung für SMS in den Einstellungen", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
-
-
     }
 }
