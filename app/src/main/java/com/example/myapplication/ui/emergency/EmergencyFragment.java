@@ -399,7 +399,7 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editTextOutput.setText(generateText());
-                sendEmergencyMessage();
+                //sendEmergencyMessage();
             }
         });
 
@@ -526,7 +526,7 @@ public class EmergencyFragment extends Fragment {
         ret = "Anrufer: " + buffer.toString();
 
         if(accident == 0){
-            ret = "Verkehrsunfall: ";
+            ret = ret + "Verkehrsunfall: ";
         } else {
             ret = "Fehler, accident ist nicht 1(=Verkehrsunfall) ";
             return "Fehler, accident ist nicht 1";
