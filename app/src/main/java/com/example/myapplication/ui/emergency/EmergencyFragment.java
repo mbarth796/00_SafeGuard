@@ -11,47 +11,44 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.masterdata.MasterdataFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 public class EmergencyFragment extends Fragment {
 
     private EmergencyViewModel emergencyViewModel;
 
-    int accident = -1;
-    int trafficAccidentType = -1;
-    int amountHurt = -1;
-    int group = -1;
-    int squeezed = -1;
-    int fire = -1;
-    int unconscious = -1;
-    int fleshWound = -1;
-    int brokenBone = -1;
-    int strongBleed = -1;
+    private int accident = -1;
+    private int trafficAccidentType = -1;
+    private int amountHurt = -1;
+    private int group = -1;
+    private int squeezed = -1;
+    private int fire = -1;
+    private int unconscious = -1;
+    private int fleshWound = -1;
+    private int brokenBone = -1;
+    private int strongBleed = -1;
 
-    TextView tvAccident, tvTrafficAccidentType, tvAmountHurt, tvGroup, tvDescription; //tvSpecialInformation
-    Button buttonTrafficAccident, buttonOtherAccident;
-    Button buttonCar, buttonBike, buttonPedestrian;
-    Button button1, button2, button3to5, button6to10, buttonMoreThenTen;
-    Button buttonAdults, buttonBabys, buttonChildren;
-    Button buttonSqueezed, buttonFire, buttonUnconscious, buttonFleshWound, buttonBrokenBone, buttonStrongBleeding;
-    //EditText etSpecialInformation;
-    Button buttonBack, buttonEmergencyCall;
+    private TextView tvAccident, tvTrafficAccidentType, tvAmountHurt, tvGroup, tvDescription; //tvSpecialInformation
+    private Button buttonTrafficAccident, buttonOtherAccident;
+    private Button buttonCar, buttonBike, buttonPedestrian;
+    private Button button1, button2, button3to5, button6to10, buttonMoreThenTen;
+    private Button buttonAdults, buttonBabys, buttonChildren;
+    private Button buttonSqueezed, buttonFire, buttonUnconscious, buttonFleshWound, buttonBrokenBone, buttonStrongBleeding;
+    private EditText editTextSpecialInformation;
+
+    private Button buttonBack, buttonEmergencyCall;
     DatabaseHelper1 myDB;
 
-    EditText editTextOutput;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -98,13 +95,13 @@ public class EmergencyFragment extends Fragment {
         buttonFleshWound =  root.findViewById(R.id.button_fleshWound);
         buttonBrokenBone =  root.findViewById(R.id.button_brokenBone);
         buttonStrongBleeding =  root.findViewById(R.id.button_strongBleeding);
+        editTextSpecialInformation =  root.findViewById(R.id.editText_specialInformation);
         setDescriptionInvisible();
 
         buttonBack =  root.findViewById(R.id.button_back);
         buttonEmergencyCall =  root.findViewById(R.id.button_EmergencyCall);
         buttonEmergencyCall.setVisibility(View.GONE);
 
-        editTextOutput =  root.findViewById(R.id.editText_output);
 
 
 // Accident
@@ -401,8 +398,9 @@ public class EmergencyFragment extends Fragment {
         buttonEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editTextOutput.setText(generateText());
+                editTextSpecialInformation.setText(generateText());
                 sendEmergencyMessage();
+
             }
         });
 
@@ -418,6 +416,8 @@ public class EmergencyFragment extends Fragment {
 
         return root;
     }
+
+
 
     //setzt alle Flags zurück, auf ungültige Werte
     public void resetFlags(){
@@ -485,7 +485,7 @@ public class EmergencyFragment extends Fragment {
         buttonChildren.setVisibility(View.GONE);
     }
 
-    //setzt den Block zur Beschreibung aus Überschrift und Buttons auf sichtbar
+    //setzt den Block zur Beschreibung aus Überschrift, Buttons und EditTextauf sichtbar
     public void setDescriptionVisible(){
         tvDescription.setVisibility(View.VISIBLE);
         buttonSqueezed.setVisibility(View.VISIBLE);
@@ -494,9 +494,10 @@ public class EmergencyFragment extends Fragment {
         buttonFleshWound.setVisibility(View.VISIBLE);
         buttonBrokenBone.setVisibility(View.VISIBLE);
         buttonStrongBleeding.setVisibility(View.VISIBLE);
+        editTextSpecialInformation.setVisibility(View.VISIBLE);
     }
 
-    //setzt den Block zur Beschreibung aus Überschrift und Buttons auf unsichtbar
+    //setzt den Block zur Beschreibung aus Überschrift, Buttons und EditText auf unsichtbar
     public void setDescriptionInvisible(){
         tvDescription.setVisibility(View.GONE);
         buttonSqueezed.setVisibility(View.GONE);
@@ -505,6 +506,7 @@ public class EmergencyFragment extends Fragment {
         buttonFleshWound.setVisibility(View.GONE);
         buttonBrokenBone.setVisibility(View.GONE);
         buttonStrongBleeding.setVisibility(View.GONE);
+        editTextSpecialInformation.setVisibility(View.GONE);
     }
 
     //Erstellt einen String aus den Flags des Notrufs, welcher durch das Klicken der Buttons gesetzt wurden
@@ -573,6 +575,10 @@ public class EmergencyFragment extends Fragment {
         if(strongBleed == 1){
             ret= ret + "starke Blutung" + "\n";
         }
+        //Textfeld genauere Beschreibung
+        /*if(!editTextSpecialInformation.getText().equals("")){
+            ret = ret + "Genauere Beschreibung:" + "\n" +  editTextSpecialInformation.getText();
+        }*/
 
         return ret;
     }
@@ -581,8 +587,12 @@ public class EmergencyFragment extends Fragment {
     public void sendEmergencyMessage(){
         //Check ob Permissions da sind
         if (ActivityCompat.checkSelfPermission(getActivity()/*this.getContext()*/, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            //Senden von einer SMS mit den Daten und einer weiteren mit der genaueren Beschreibung
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage("+491749823050", null, generateText(), null, null);
+            if(!editTextSpecialInformation.getText().equals("")){
+                smsManager.sendTextMessage("+491749823050", null, editTextSpecialInformation.getText().toString(), null, null);
+            }
             Snackbar.make(this.getView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }else{

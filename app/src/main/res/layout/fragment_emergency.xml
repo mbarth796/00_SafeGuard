@@ -397,16 +397,17 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editText_output"
+                android:id="@+id/editText_specialInformation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/SafeGuardGrey"
+                android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:paddingTop="5dp"
                 android:scrollHorizontally="false"
                 android:singleLine="false"
-                android:text="Hier sollte ein Text stehen"
+                android:hint="*Nach Wahl* genauere Beschreibung des Unfalls"
+                android:textColorHint="@color/black"
                 android:textColor="@color/black" />
 
             <!-- Navigationsbuttons (zurück + Notruf absetzen) -->
