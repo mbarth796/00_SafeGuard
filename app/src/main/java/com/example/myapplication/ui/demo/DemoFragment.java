@@ -36,46 +36,76 @@ public class DemoFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_demo, container, false);
 
         askPermissions();
-
         Button button = root.findViewById(R.id.button);
         button.setOnClickListener(
                 new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    askPermissions();
-                } else {
-                    String ID = "015206417298";
-                    if (ID != null) {
-                        videoCall(ID);
-                    } else {
-                        Toast.makeText(v.getContext(), "Number not found or can't accept video call!",
-                                Toast.LENGTH_LONG).show();
+                    public void onClick(View v) {
+                        if (
+                                ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED ||
+                                        ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+                        ) {
+                            askPermissions();
+                        } else {
+                            String eText = "+491749823050";
+                            // I am not checking correctness of number
+                            Long _ID = getContactIdUsingNumber(eText, v.getContext());
+                            videoCall(_ID);
+                        }
                     }
-                }
-            }
-        });
-
+                });
         return root;
     }
 
     // Get required permissions
     public void askPermissions() {
         // Ask permissions
-        requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1);
+        requestPermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_CONTACTS}, 1);
+    }
+
+    public Long getContactIdUsingNumber(String phoneNumber, Context context) {
+
+        // Search contact using phone number
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+        ContentResolver resolver = context.getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null);
+
+        // Store ID of the contact we are searching
+        long contactId = 0L;
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            contactId = cursor.getLong(cursor.getColumnIndex(ContactsContract.PhoneLookup.CONTACT_ID));
+        } else
+            return null;
+
+        // Make array of 1 element
+        String[] selectionArgs = {Long.toString(contactId)};
+        // Select clause to search for contact I
+        String selectionClause = ContactsContract.Data.CONTACT_ID + " = ? ";
+
+        Long _ID = null;
+        cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, selectionClause, selectionArgs, null);
+        // Cursor can't be null but anyway...
+        if (cursor != null)
+            while (cursor.moveToNext()) {
+                String mimeType = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.MIMETYPE));
+                if (mimeType.equals("vnd.android.cursor.item/vnd.com.whatsapp.video.call")) {
+                    _ID = cursor.getLong(cursor.getColumnIndex(ContactsContract.Data._ID));
+                }
+            }
+        else
+            return null;
+        cursor.close();
+        return _ID;
     }
 
     //Video Call Intent
-    public void videoCall(String ID) {
+    public void videoCall(Long ID) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        String data = "content://com.android.contacts/data/" + ID;
+        String data = "content://com.android.contacts/data/" + Long.toString(ID);
         String type = "vnd.android.cursor.item/vnd.com.whatsapp.video.call";
         intent.setDataAndType(Uri.parse(data), type);
         intent.setPackage("com.whatsapp");
         startActivity(intent);
     }
-
-
 }
