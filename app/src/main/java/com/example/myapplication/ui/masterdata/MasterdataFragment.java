@@ -193,11 +193,12 @@ public class MasterdataFragment extends Fragment {
         while (result.moveToNext()) {
             buffer.append("Vorname: "+result.getString(1)+"\n");
             buffer.append("Name: "+result.getString(2)+"\n");
-            buffer.append("Telefonnummer: "+result.getString(3)+"\n");
+            /*buffer.append("Telefonnummer: "+result.getString(3)+"\n");
             buffer.append("Geburtsdatum: "+result.getString(4)+"\n");
             buffer.append("Blutgruppe: "+result.getString(5));
             buffer.append("Rhesusfaktor: "+result.getString(6)+"\n");
             buffer.append("Vorerkrankungen: "+result.getString(7)+"\n");
+             */
         }
         return buffer.toString();
     }
