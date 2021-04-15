@@ -66,16 +66,17 @@ public class MasterdataFragment extends Fragment {
         blutgruppeSpinner = (Spinner) root.findViewById(R.id.spinner_blutgruppe);
         rhesusfaktorSpinner = (Spinner) root.findViewById(R.id.spinner_rhesusfaktor);
 
-        ViewStammdatenUser();
-        DeleteData();
+        viewStammdatenUser();
+        deleteData();
         updateStammdatenData();
+        getMasterDataString();
 
         return root;
     }
 
 
     //DelteData: Löscht die Daten von der angegebeben id, gibt ein Toast aus ob Vorgang erfolgreich
-    public void DeleteData() {
+    public void deleteData() {
         buttonDelete_Data.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -111,10 +112,9 @@ public class MasterdataFragment extends Fragment {
     }
 
     //ViewStammdaten: Holt sich zunächst alle Daten und gibt diese dann mithilfe eines buffer aus; showmessage() zum anzeigen der Daten
-    public void ViewStammdatenUser() {
+    public void viewStammdatenUser() {
 
         Cursor cursor = myDB.getStammdatenData();
-
 
         if(cursor.moveToFirst()) {
             vornameStammdaten = cursor.getString(1);
@@ -184,5 +184,21 @@ public class MasterdataFragment extends Fragment {
             vorerkrankungenStammdaten = cursor.getString(7);
             vorerkrankungenStammdatenView.setText(vorerkrankungenStammdaten);
         }
+    }
+
+    public String getMasterDataString() {
+
+        Cursor result = myDB.getMasterData();
+        StringBuffer buffer = new StringBuffer();
+        while (result.moveToNext()) {
+            buffer.append("Vorname: "+result.getString(1)+"\n");
+            buffer.append("Name: "+result.getString(2)+"\n");
+            buffer.append("Telefonnummer: "+result.getString(3)+"\n");
+            buffer.append("Geburtsdatum: "+result.getString(4)+"\n");
+            buffer.append("Blutgruppe: "+result.getString(5));
+            buffer.append("Rhesusfaktor: "+result.getString(6)+"\n");
+            buffer.append("Vorerkrankungen: "+result.getString(7)+"\n");
+        }
+        return buffer.toString();
     }
 }

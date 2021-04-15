@@ -11,16 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
-
 import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -47,6 +44,7 @@ public class EmergencyFragment extends Fragment {
     Button buttonSqueezed, buttonFire, buttonUnconscious, buttonFleshWound, buttonBrokenBone, buttonStrongBleeding;
     //EditText etSpecialInformation;
     Button buttonBack, buttonEmergencyCall;
+    DatabaseHelper1 myDB;
 
     EditText editTextOutput;
 
@@ -434,7 +432,7 @@ public class EmergencyFragment extends Fragment {
             }
         });
 
-
+        myDB = new DatabaseHelper1(getActivity());
 
         return root;
     }

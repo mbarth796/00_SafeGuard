@@ -87,4 +87,11 @@ public class DatabaseHelper1 extends SQLiteOpenHelper {
         db.update(TABLE_NAME, contentValues, "ID = ?", new String[] {id});
         return true;
     }
+
+    //getMasterData():
+    public Cursor getMasterData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
+        return result;
+    }
 }
