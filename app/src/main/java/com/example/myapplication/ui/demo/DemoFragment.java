@@ -40,14 +40,12 @@ public class DemoFragment extends Fragment {
         button.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        if (
-                                ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED ||
-                                        ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
-                        ) {
+                        //Check ob Permissions da sind
+                        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                             askPermissions();
                         } else {
+                            // Maxis Nummer
                             String eText = "+491749823050";
-                            // I am not checking correctness of number
                             Long _ID = getContactIdUsingNumber(eText, v.getContext());
                             videoCall(_ID);
                         }
