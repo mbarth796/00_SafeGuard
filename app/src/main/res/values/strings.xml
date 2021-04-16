@@ -42,7 +42,7 @@
     <string name="emergency_fleshWound">Fleischwunde</string>
     <string name="emergency_brokenBone">Knochenbruch</string>
     <string name="emergency_strongBleeding">Starke Blutung</string>
-    <string name="emergency_specialInformation">"*Nach Wahl genauere Beschreibung des Unfalls*"</string>
+    <string name="emergency_specialInformation">*Nach Wahl genauere Beschreibung des Unfalls*</string>
     <string name="emergency_emergencyCall">Notruf absetzen</string>
     <string name="emergency_back">Zurück</string>
 
