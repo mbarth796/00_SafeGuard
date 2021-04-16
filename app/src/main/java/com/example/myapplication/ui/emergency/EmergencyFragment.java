@@ -1,8 +1,10 @@
 package com.example.myapplication.ui.emergency;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -12,11 +14,14 @@ import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -142,6 +147,7 @@ public class EmergencyFragment extends Fragment {
                 //Anzeigen eines Fehlerbildschirms bzw. Weiterleitung zum normalen Anruf
                 Snackbar.make(view, "Bitte Rufen Sie den Notruf normal an, dies wird in der App noch nicht unterstützt", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                popup();
             }
         });
 
@@ -428,17 +434,18 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(checkFlags()){
                     sendEmergencyMessage();
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        askPermissionsWhatsApp();
+                    } else {
+                        // Michis Nummer
+                        String eText = phonenumberWhatsApp;
+                        Long _ID = getContactIdUsingNumber(eText, view.getContext());
+                        videoCall(_ID);
+                    }
                 }
                 editTextSpecialInformation.setText(generateText());
 
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    askPermissionsWhatsApp();
-                } else {
-                    // Michis Nummer
-                    String eText = phonenumberWhatsApp;
-                    Long _ID = getContactIdUsingNumber(eText, view.getContext());
-                    videoCall(_ID);
-                }
+
             }
         });
 
@@ -705,5 +712,37 @@ public class EmergencyFragment extends Fragment {
     public void askPermissionsWhatsApp() {
         // Ask permissions
         requestPermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_CONTACTS}, 1);
+    }
+
+    //
+    public void popup(){
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Nicht in der App verfügbar")
+                .setMessage("Bitte rufen Sie den Notruf normal an" + "\n" + "Durch Klicken auf 'Anrufen' werden Sie direkt weitergeleitet")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("anrufen", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        phoneCall();
+                    }
+                })
+                .setNegativeButton("zurück", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    public void phoneCall() {
+        String number = phonenumberWhatsApp;
+
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + number));
+
+//< check: phone permission >
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            askPermissionsWhatsApp();
+        } else {
+            startActivity(intent);
+        }
     }
 }
