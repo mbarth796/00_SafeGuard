@@ -26,6 +26,7 @@ import com.example.myapplication.ui.masterdata.MasterdataViewModel;
 
 public class DemoFragment extends Fragment {
 
+
     private DemoViewModel demoViewModel;
 
     @Override
@@ -34,7 +35,7 @@ public class DemoFragment extends Fragment {
         demoViewModel =
                 new ViewModelProvider(this).get(DemoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_demo, container, false);
-
+ /*
         askPermissions();
         Button button = root.findViewById(R.id.button);
         button.setOnClickListener(
@@ -51,8 +52,8 @@ public class DemoFragment extends Fragment {
                         }
                     }
                 });
-        return root;
-    }
+        */return root;
+    }/*
 
     // Get required permissions
     public void askPermissions() {
@@ -105,5 +106,5 @@ public class DemoFragment extends Fragment {
         intent.setDataAndType(Uri.parse(data), type);
         intent.setPackage("com.whatsapp");
         startActivity(intent);
-    }
+    }*/
 }

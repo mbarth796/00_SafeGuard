@@ -69,7 +69,7 @@ public class MasterdataFragment extends Fragment {
         viewStammdatenUser();
         deleteData();
         updateStammdatenData();
-        getMasterDataString();
+        //getMasterDataString();
 
         return root;
     }
@@ -186,7 +186,7 @@ public class MasterdataFragment extends Fragment {
         }
     }
 
-    public String getMasterDataString() {
+    /*public String getMasterDataString() {
 
         Cursor result = myDB.getMasterData();
         StringBuffer buffer = new StringBuffer();
@@ -198,8 +198,8 @@ public class MasterdataFragment extends Fragment {
             buffer.append("Blutgruppe: "+result.getString(5));
             buffer.append("Rhesusfaktor: "+result.getString(6)+"\n");
             buffer.append("Vorerkrankungen: "+result.getString(7)+"\n");
-             */
+
         }
         return buffer.toString();
-    }
+    }  */
 }
