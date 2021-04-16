@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,7 +63,9 @@ public class EmergencyFragment extends Fragment {
     private EditText editTextSpecialInformation;
 
     private Button buttonBack, buttonEmergencyCall;
+    private ScrollView scrollView;
     DatabaseHelper1 myDB;
+
 
 
 
@@ -118,7 +121,10 @@ public class EmergencyFragment extends Fragment {
         buttonEmergencyCall =  root.findViewById(R.id.button_EmergencyCall);
         buttonEmergencyCall.setVisibility(View.GONE);
 
+        scrollView = root.findViewById(R.id.scrollView_emergency);
+
         askPermissionsWhatsApp();
+        askPermissionSMS();
 
 // Accident
         buttonTrafficAccident.setOnClickListener(new View.OnClickListener() {
@@ -128,10 +134,10 @@ public class EmergencyFragment extends Fragment {
                     accident = 0;
                     //buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
                     //buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    //so wünscht android studio sich das
                     buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setTrafficAccidentTypeVisible();
+                    scrollToEnd();
                 } else {
                     accident = -1;
                     buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -161,6 +167,7 @@ public class EmergencyFragment extends Fragment {
                     buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
+                    scrollToEnd();
                 } else {
                     trafficAccidentType = -1;
                     buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -176,6 +183,7 @@ public class EmergencyFragment extends Fragment {
                     buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
+                    scrollToEnd();
                 } else {
                     trafficAccidentType = -1;
                     buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -191,6 +199,7 @@ public class EmergencyFragment extends Fragment {
                     buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
+                    scrollToEnd();
                 } else {
                     trafficAccidentType = -1;
                     buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -210,6 +219,7 @@ public class EmergencyFragment extends Fragment {
                     button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
+                    scrollToEnd();
                 } else {
                     amountHurt = -1;
                     button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -227,6 +237,7 @@ public class EmergencyFragment extends Fragment {
                     button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
+                    scrollToEnd();
                 } else {
                     amountHurt = -1;
                     button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -244,6 +255,7 @@ public class EmergencyFragment extends Fragment {
                     button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
+                    scrollToEnd();
                 } else {
                     amountHurt = -1;
                     button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -261,6 +273,7 @@ public class EmergencyFragment extends Fragment {
                     button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
+                    scrollToEnd();
                 } else {
                     amountHurt = -1;
                     button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -278,6 +291,7 @@ public class EmergencyFragment extends Fragment {
                     button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
+                    scrollToEnd();
                 } else {
                     amountHurt = -1;
                     buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -295,6 +309,7 @@ public class EmergencyFragment extends Fragment {
                     buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
+                    scrollToEnd();
                 } else {
                     group = -1;
                     buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -310,6 +325,7 @@ public class EmergencyFragment extends Fragment {
                     buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
+                    scrollToEnd();
                 } else {
                     group = -1;
                     buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -325,6 +341,7 @@ public class EmergencyFragment extends Fragment {
                     buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
+                    scrollToEnd();
                 } else {
                     group = -1;
                     buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -340,6 +357,7 @@ public class EmergencyFragment extends Fragment {
                     squeezed = 1;
                     buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
+                    scrollToEnd();
                 } else {
                     squeezed = -1;
                     buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -353,6 +371,7 @@ public class EmergencyFragment extends Fragment {
                     fire = 1;
                     buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
+                    scrollToEnd();
                 } else {
                     fire = -1;
                     buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -366,6 +385,7 @@ public class EmergencyFragment extends Fragment {
                     unconscious = 1;
                     buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
+                    scrollToEnd();
                 } else {
                     unconscious = -1;
                     buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -379,6 +399,7 @@ public class EmergencyFragment extends Fragment {
                     fleshWound = 1;
                     buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
+                    scrollToEnd();
                 } else {
                     fleshWound = -1;
                     buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -392,6 +413,7 @@ public class EmergencyFragment extends Fragment {
                     brokenBone = 1;
                     buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
+                    scrollToEnd();
                 } else {
                     brokenBone = -1;
                     buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -405,6 +427,7 @@ public class EmergencyFragment extends Fragment {
                     strongBleed = 1;
                     buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
+                    scrollToEnd();
                 } else {
                     strongBleed = -1;
                     buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
@@ -426,6 +449,7 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 buttonEmergencyCall.setVisibility(View.VISIBLE);
+                scrollToEnd();
             }
         });
 
@@ -738,11 +762,18 @@ public class EmergencyFragment extends Fragment {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + number));
 
-//< check: phone permission >
+        //< check: phone permission >
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             askPermissionsWhatsApp();
         } else {
             startActivity(intent);
         }
+    }
+    public void scrollToEnd(){
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.scrollTo(0, scrollView.getBottom());
+            }
+        });
     }
 }
