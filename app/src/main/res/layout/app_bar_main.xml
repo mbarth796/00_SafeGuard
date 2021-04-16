@@ -11,13 +11,30 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MyApplication.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/sup_rounded_corner_red"
-            android:gravity="center_horizontal"
-            app:popupTheme="@style/Theme.MyApplication.PopupOverlay"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/sup_rounded_corner_red">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                app:popupTheme="@style/Theme.MyApplication.PopupOverlay" />
+
+            <ImageButton
+                android:id="@+id/ButtonHome"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:srcCompat="@drawable/ic_rounded_safeguard"
+                android:layout_weight="7"
+                android:scaleType="fitCenter"
+                app:popupTheme="@style/Theme.MyApplication.PopupOverlay"/>
+        </LinearLayout>
 
 
     </com.google.android.material.appbar.AppBarLayout>
