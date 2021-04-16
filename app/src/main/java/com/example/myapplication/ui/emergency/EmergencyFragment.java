@@ -1,9 +1,14 @@
 package com.example.myapplication.ui.emergency;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,8 +30,6 @@ import androidx.navigation.Navigation;
 import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.Objects;
 
 public class EmergencyFragment extends Fragment {
 
@@ -41,6 +45,8 @@ public class EmergencyFragment extends Fragment {
     private int fleshWound = -1;
     private int brokenBone = -1;
     private int strongBleed = -1;
+    private String phonenumberWhatsApp = "+4915209521563";
+    private String phonenumberSMS = "+491749823050";
 
     private TextView tvAccident, tvTrafficAccidentType, tvAmountHurt, tvGroup, tvDescription; //tvSpecialInformation
     private Button buttonTrafficAccident, buttonOtherAccident;
@@ -424,6 +430,15 @@ public class EmergencyFragment extends Fragment {
                     sendEmergencyMessage();
                 }
                 editTextSpecialInformation.setText(generateText());
+
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    askPermissions();
+                } else {
+                    // Michis Nummer
+                    String eText = phonenumberWhatsApp;
+                    Long _ID = getContactIdUsingNumber(eText, view.getContext());
+                    videoCall(_ID);
+                }
             }
         });
 
@@ -624,19 +639,71 @@ public class EmergencyFragment extends Fragment {
         if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             //Senden von einer SMS mit den Daten und einer weiteren mit der genaueren Beschreibung
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage("+491749823050", null, generateText(), null, null);
+            smsManager.sendTextMessage(phonenumberSMS, null, generateText(), null, null);
             if(!editTextSpecialInformation.getText().toString().equals("")){
-                smsManager.sendTextMessage("+491749823050", null, editTextSpecialInformation.getText().toString(), null, null);
+                smsManager.sendTextMessage(phonenumberSMS, null, editTextSpecialInformation.getText().toString(), null, null);
             }
             Snackbar.make(this.requireView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }else{
-            askPermission();
+            askPermissionSMS();
         }
     }
 
+    public Long getContactIdUsingNumber(String phoneNumber, Context context) {
+        // Search contact using phone number
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+        ContentResolver resolver = context.getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null);
+
+        // Store ID of the contact we are searching
+        long contactId = 0L;
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            contactId = cursor.getLong(cursor.getColumnIndex(ContactsContract.PhoneLookup.CONTACT_ID));
+        } else
+            return null;
+
+        // Make array of 1 element
+        String[] selectionArgs = {Long.toString(contactId)};
+        // Select clause to search for contact I
+        String selectionClause = ContactsContract.Data.CONTACT_ID + " = ? ";
+
+        Long _ID = null;
+        cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, selectionClause, selectionArgs, null);
+        // Cursor can't be null but anyway...
+        if (cursor != null)
+            while (cursor.moveToNext()) {
+                String mimeType = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.MIMETYPE));
+                if (mimeType.equals("vnd.android.cursor.item/vnd.com.whatsapp.video.call")) {
+                    _ID = cursor.getLong(cursor.getColumnIndex(ContactsContract.Data._ID));
+                }
+            }
+        else
+            return null;
+        cursor.close();
+        return _ID;
+    }
+
+    //Video Call Intent
+    public void videoCall(Long ID) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        String data = "content://com.android.contacts/data/" + Long.toString(ID);
+        String type = "vnd.android.cursor.item/vnd.com.whatsapp.video.call";
+        intent.setDataAndType(Uri.parse(data), type);
+        intent.setPackage("com.whatsapp");
+        startActivity(intent);
+    }
+
     //prüft, ob die Berechtigung zur SMS-Versendung gegeben wurde
-    public void askPermission() {
+    public void askPermissionSMS() {
         requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+    }
+
+    // Get required permissions
+    public void askPermissions() {
+        // Ask permissions
+        requestPermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_CONTACTS}, 1);
     }
 }
