@@ -151,8 +151,6 @@ public class EmergencyFragment extends Fragment {
                 buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                 buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 //Anzeigen eines Fehlerbildschirms bzw. Weiterleitung zum normalen Anruf
-                Snackbar.make(view, "Bitte Rufen Sie den Notruf normal an, dies wird in der App noch nicht unterstützt", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 popup();
             }
         });
