@@ -1,16 +1,10 @@
 package com.example.myapplication.ui.masterdata;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.myapplication.ui.emergency.EmergencyViewModel;
-import com.example.myapplication.ui.firstaid.FirstaidFragment;
-import com.example.myapplication.ui.firstaid.FirstaidViewModel;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.snackbar.Snackbar;
 import com.example.myapplication.R;
 
 public class MasterdataFragment extends Fragment {
@@ -83,9 +71,11 @@ public class MasterdataFragment extends Fragment {
                     public void onClick(View v) {
                         boolean isDeleted = myDB.deleteData("1");
                         if(isDeleted == true) {
-                            Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is Deleted", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         } else {
-                            Toast.makeText(getActivity(), "Data is not Deleted", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is not Deleted", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                     }
                 }
@@ -102,9 +92,11 @@ public class MasterdataFragment extends Fragment {
                                 editTelefonnummer.getText().toString(), editGeburtsdatum.getText().toString(), editBlutgruppe,
                                 editRhesusfaktor, editVorerkrankungen.getText().toString());
                         if(isUpdated == true) {
-                            Toast.makeText(getActivity(), "Data Updated", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is Updated", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         } else {
-                            Toast.makeText(getActivity(), "Data is not Updated", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is not Updated", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                     }
                 }
