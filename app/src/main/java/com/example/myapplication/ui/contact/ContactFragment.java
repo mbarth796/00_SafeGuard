@@ -2,25 +2,17 @@ package com.example.myapplication.ui.contact;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.database.Cursor;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
 import com.example.myapplication.R;
-import com.example.myapplication.ui.masterdata.DatabaseHelper1;
-import com.example.myapplication.ui.masterdata.MasterdataViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ContactFragment extends Fragment {
 
@@ -59,7 +51,7 @@ public class ContactFragment extends Fragment {
         return root;
     }
 
-    //DeleteData: Löscht die Daten von der angegebeben id, gibt ein Toast aus ob Vorgang erfolgreich
+    //DeleteData: Löscht die Daten von der angegebeben id, gibt ein Snackbar aus ob Vorgang erfolgreich
     public void DeleteData() {
         buttonDelete_Contact.setOnClickListener(
                 new View.OnClickListener() {
@@ -67,16 +59,18 @@ public class ContactFragment extends Fragment {
                     public void onClick(View v) {
                         Integer deletedRows = myDB.deleteData(editid.getText().toString());
                         if(deletedRows > 0) {
-                            Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is Deleted", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         } else {
-                            Toast.makeText(getActivity(), "Data is not Deleted", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is not Deleted", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                     }
                 }
         );
     }
 
-    //UpdateData: Updated die Daten mit den eingegebenen Parametern, gibt Toast aus ob Vorgang erfolgreich
+    //UpdateData: Updated die Daten mit den eingegebenen Parametern, gibt Snackbar aus ob Vorgang erfolgreich
     public void UpdateData() {
         buttonUpdate_Contact.setOnClickListener(
                 new View.OnClickListener() {
@@ -86,9 +80,11 @@ public class ContactFragment extends Fragment {
                                 editName.getText().toString(), editTelefonnummer.getText().toString(),
                                 editBeziehung.getText().toString());
                         if(isUpdated == true) {
-                            Toast.makeText(getActivity(), "Data Updated", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is Updated", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         } else {
-                            Toast.makeText(getActivity(), "Data is not Updated", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is not Updated", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                     }
                 }
@@ -130,7 +126,7 @@ public class ContactFragment extends Fragment {
         builder.show();
     }
 
-    //AddData: nimmt Parameter entgegen und fügt diese ein, Toast ob Vorgang erfolgreich
+    //AddData: nimmt Parameter entgegen und fügt diese ein, Snackbar ob Vorgang erfolgreich
     public void AddData() {
         buttonAdd_Contact.setOnClickListener(
                 new View.OnClickListener() {
@@ -140,10 +136,12 @@ public class ContactFragment extends Fragment {
                                 editName.getText().toString(), editTelefonnummer.getText().toString(),
                                 editBeziehung.getText().toString());
                         if (isInserted == true) {
-                            Toast.makeText(getActivity(), "Daten wurden eingepflegt", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is Inserted", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                         else {
-                            Toast.makeText(getActivity(), "Data is not inserted", Toast.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "Data is not Inserted", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                     }
                 }
