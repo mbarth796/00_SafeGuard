@@ -14,14 +14,11 @@ import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -151,7 +148,7 @@ public class EmergencyFragment extends Fragment {
                 buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
                 buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
                 //Anzeigen eines Fehlerbildschirms bzw. Weiterleitung zum normalen Anruf
-                popup();
+                popUpOtherAccident();
             }
         });
 
@@ -578,6 +575,12 @@ public class EmergencyFragment extends Fragment {
 
     //gibt true zurück, wenn in jeder Kategorie mindestens ein Button ausgewählt ist
     public boolean checkFlags(){
+        if(accident == 1){
+            Snackbar.make(this.requireView(), "Nur für Verkehrsunfall verfügbar, wählen Sie den Notruf!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return false;
+        }
+
         if(accident != -1 && trafficAccidentType != -1 && amountHurt != -1 && group != -1 &&
                 !(squeezed == -1 && fire == -1 && unconscious == -1 && fleshWound == -1 && brokenBone == -1 && strongBleed == -1 &&
                         editTextSpecialInformation.getText().toString().equals(""))){
@@ -737,7 +740,7 @@ public class EmergencyFragment extends Fragment {
     }
 
     //
-    public void popup(){
+    public void popUpOtherAccident(){
         new AlertDialog.Builder(requireContext())
                 .setTitle("Nicht in der App verfügbar")
                 .setMessage("Bitte rufen Sie den Notruf normal an" + "\n" + "Durch Klicken auf 'Anrufen' werden Sie direkt weitergeleitet")

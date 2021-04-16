@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
         buttonHome = findViewById(R.id.ButtonHome);
         Activity activity= this;
         buttonHome.setOnClickListener(new View.OnClickListener() {
