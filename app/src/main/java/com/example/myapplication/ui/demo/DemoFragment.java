@@ -45,7 +45,7 @@ public class DemoFragment extends Fragment {
                             askPermissions();
                         } else {
                             // Maxis Nummer
-                            String eText = "+491749823050";
+                            String eText = "+4915209521563";
                             Long _ID = getContactIdUsingNumber(eText, v.getContext());
                             videoCall(_ID);
                         }
