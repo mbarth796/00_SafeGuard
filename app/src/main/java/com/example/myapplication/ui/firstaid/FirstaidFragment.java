@@ -20,9 +20,6 @@ import com.example.myapplication.ui.masterdata.MasterdataViewModel;
 public class FirstaidFragment extends Fragment {
 
     private FirstaidViewModel firdAidViewModel;
-    Button seitenlage, herzdruck, behandlung, psybetreuung;
-
-
 
     public static FirstaidFragment newInstance() {
         return new FirstaidFragment();
@@ -34,18 +31,18 @@ public class FirstaidFragment extends Fragment {
 
         firdAidViewModel =
                 new ViewModelProvider(this).get(FirstaidViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_masterdata, container, false);
+        View root = inflater.inflate(R.layout.fragment_firstaid, container, false);
 
-        seitenlage = (Button) root.findViewById(R.id.button_Seitenlage);
-        herzdruck = (Button) root.findViewById(R.id.button_Herzdruck);
-        behandlung = (Button) root.findViewById(R.id.button_Behandlung);
-        psybetreuung = (Button) root.findViewById(R.id.button_PsyBetreuung);
+        Button seitenlage = (Button) root.findViewById(R.id.button_Seitenlage);
+        Button herzdruck = (Button) root.findViewById(R.id.button_Herzdruck);
+        Button behandlung = (Button) root.findViewById(R.id.button_Behandlung);
+        Button psybetreuung = (Button) root.findViewById(R.id.button_PsyBetreuung);
 
         seitenlage.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            Toast.makeText(getActivity(), "Fehlt noch ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
                         }
                 }
         );
@@ -54,7 +51,7 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -63,7 +60,7 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -72,7 +69,7 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -80,12 +77,4 @@ public class FirstaidFragment extends Fragment {
 
         return root;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(FirstaidViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }
