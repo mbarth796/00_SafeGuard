@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.ui.masterdata.MasterdataViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 public class FirstaidFragment extends Fragment {
 
@@ -42,7 +43,8 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), "Future content - Coming soon!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                         }
                 }
         );
@@ -51,7 +53,8 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), "Future content - Coming soon!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
                 }
         );
@@ -60,7 +63,8 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), "Future content - Coming soon!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
                 }
         );
@@ -69,12 +73,11 @@ public class FirstaidFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "Fehlt noch!", Toast.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), "Future content - Coming soon!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
                 }
         );
-
-
         return root;
     }
 }
