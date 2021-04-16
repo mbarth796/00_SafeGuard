@@ -434,17 +434,18 @@ public class EmergencyFragment extends Fragment {
             public void onClick(View view) {
                 if(checkFlags()){
                     sendEmergencyMessage();
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        askPermissionsWhatsApp();
+                    } else {
+                        // Michis Nummer
+                        String eText = phonenumberWhatsApp;
+                        Long _ID = getContactIdUsingNumber(eText, view.getContext());
+                        videoCall(_ID);
+                    }
                 }
                 editTextSpecialInformation.setText(generateText());
 
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    askPermissionsWhatsApp();
-                } else {
-                    // Michis Nummer
-                    String eText = phonenumberWhatsApp;
-                    Long _ID = getContactIdUsingNumber(eText, view.getContext());
-                    videoCall(_ID);
-                }
+
             }
         });
 
