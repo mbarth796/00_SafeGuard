@@ -19,11 +19,4 @@
         android:paddingTop="300dp"
         android:textSize="32dp"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_marginTop="200dp"
-        android:layout_width="match_parent"
-        android:layout_height="271dp"
-        android:text="Button" />
-
  </FrameLayout>

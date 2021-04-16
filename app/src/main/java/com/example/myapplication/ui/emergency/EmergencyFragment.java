@@ -113,7 +113,7 @@ public class EmergencyFragment extends Fragment {
         buttonEmergencyCall =  root.findViewById(R.id.button_EmergencyCall);
         buttonEmergencyCall.setVisibility(View.GONE);
 
-
+        askPermissionsWhatsApp();
 
 // Accident
         buttonTrafficAccident.setOnClickListener(new View.OnClickListener() {
@@ -432,7 +432,7 @@ public class EmergencyFragment extends Fragment {
                 editTextSpecialInformation.setText(generateText());
 
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    askPermissions();
+                    askPermissionsWhatsApp();
                 } else {
                     // Michis Nummer
                     String eText = phonenumberWhatsApp;
@@ -702,7 +702,7 @@ public class EmergencyFragment extends Fragment {
     }
 
     // Get required permissions
-    public void askPermissions() {
+    public void askPermissionsWhatsApp() {
         // Ask permissions
         requestPermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_CONTACTS}, 1);
     }

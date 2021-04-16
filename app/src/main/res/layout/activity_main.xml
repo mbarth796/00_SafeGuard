@@ -25,6 +25,7 @@
         app:itemIconPadding="14dp"
         app:itemIconTint="@color/SafeGuardBlue"
         app:itemTextColor="@color/black"
+        app:itemHorizontalPadding="10dp"
         app:menu="@menu/activity_main_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
