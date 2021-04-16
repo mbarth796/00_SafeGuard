@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MyApplication.AppBarOverlay"
-        android:background="@drawable/sup_rounded_corner_red">
+        android:background="@drawable/sup_lightred">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/sup_rounded_corner_red">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -23,7 +25,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:gravity="center_horizontal"
                 android:layout_weight="1"
-                app:popupTheme="@style/Theme.MyApplication.PopupOverlay" />
+               />
 
             <ImageButton
                 android:id="@+id/ButtonHome"
@@ -33,7 +35,7 @@
                 android:background="#00000000"
                 android:layout_weight="6"
                 android:scaleType="fitCenter"
-                app:popupTheme="@style/Theme.MyApplication.PopupOverlay"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"/>
         </LinearLayout>
 
