@@ -137,13 +137,13 @@ public class EmergencyFragment extends Fragment implements LocationListener {
 
         scrollView = root.findViewById(R.id.scrollView_emergency);
 
-
         askPermissionsWhatsApp();
         askPermissionSMS();
 
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_TO_REFRESH, MIN_DISTANCE_TO_REFRESH, EmergencyFragment.this);
-
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_TO_REFRESH, MIN_DISTANCE_TO_REFRESH, EmergencyFragment.this);
+        }
 
 // Accident
         buttonTrafficAccident.setOnClickListener(new View.OnClickListener() {
@@ -475,7 +475,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 if (checkFlags()) {
-                    sendEmergencyMessage();
+                    //sendEmergencyMessage();
                     if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         askPermissionsWhatsApp();
                     } else {
