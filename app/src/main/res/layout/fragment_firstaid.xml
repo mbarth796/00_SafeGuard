@@ -9,13 +9,13 @@
 
 
     <Button
-        android:id="@+id/button_Seitenlage"
+        android:id="@+id/button_latPos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:background="@drawable/sup_rounded_corner_grey"
         android:fontFamily="@font/bree_serif"
-        android:text="Stabile Seitenlage"
+        android:text="@string/firstaid_latPos"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -27,14 +27,14 @@
         app:layout_constraintVertical_bias="0.119" />
 
     <Button
-        android:id="@+id/button_Herzdruck"
+        android:id="@+id/button_heartPress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginBottom="16dp"
         android:background="@drawable/sup_rounded_corner_grey"
         android:fontFamily="@font/bree_serif"
-        android:text="Herzdruckmassage"
+        android:text="@string/firstaid_heartPress"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -42,17 +42,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_Seitenlage"
+        app:layout_constraintTop_toBottomOf="@+id/button_latPos"
         app:layout_constraintVertical_bias="0.085" />
     <Button
-        android:id="@+id/button_Behandlung"
+        android:id="@+id/button_woundCare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginBottom="16dp"
         android:background="@drawable/sup_rounded_corner_grey"
         android:fontFamily="@font/bree_serif"
-        android:text="Wundbehandlung"
+        android:text="@string/firstaid_woundCare"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -60,18 +60,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_Herzdruck"
+        app:layout_constraintTop_toBottomOf="@+id/button_heartPress"
         app:layout_constraintVertical_bias="0.085" />
 
     <Button
-        android:id="@+id/button_PsyBetreuung"
+        android:id="@+id/button_psyCare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginBottom="16dp"
         android:background="@drawable/sup_rounded_corner_grey"
         android:fontFamily="@font/bree_serif"
-        android:text="Psychologische Betreuung"
+        android:text="@string/firstaid_psyCare"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_Behandlung"
+        app:layout_constraintTop_toBottomOf="@+id/button_woundCare"
         app:layout_constraintVertical_bias="0.085" />
 
 

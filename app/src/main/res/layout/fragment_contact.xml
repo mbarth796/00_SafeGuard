@@ -22,14 +22,14 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_ViewAnsprechpartner"
+                android:id="@+id/button_viewContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="@string/viewAnsprechpartner"
+                android:text="@string/contact_view"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
@@ -37,21 +37,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
 
             <TextView
-                android:id="@+id/textView_VornameAnsprechpartner"
+                android:id="@+id/textView_prenameContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/vornameStammdaten"
+                android:text="@string/masterdata_prename"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText_VornameAnsprechpartner"
+                android:id="@+id/editText_prenameContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -59,7 +59,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/vornameStammdaten"
+                android:hint="@string/masterdata_prename"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -68,21 +68,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_NameAnsprechpartner"
+                android:id="@+id/textView_lastnameContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/nachnameStammdaten"
+                android:text="@string/masterdata_lastname"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_name" />
 
             <EditText
-                android:id="@+id/editText_NameAnsprechpartner"
+                android:id="@+id/editText_lastnameContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -90,7 +90,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/nachnameStammdaten"
+                android:hint="@string/masterdata_lastname"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -99,21 +99,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
             <TextView
-                android:id="@+id/textView_TelefonnummerAnsprechpartner"
+                android:id="@+id/textView_telephoneContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/telefonnummerStammdaten"
+                android:text="@string/masterdata_telephone"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_geburtsdatum" />
 
             <EditText
-                android:id="@+id/editText_TelefonnummerAnsprechpartner"
+                android:id="@+id/editText_telephoneContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -121,7 +121,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/telefonnummerStammdaten"
+                android:hint="@string/masterdata_telephone"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -131,14 +131,14 @@
 
 
             <TextView
-                android:id="@+id/textView_BeziehungAnsprechpartner"
+                android:id="@+id/textView_relationContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/beziehungAnsprechpartner"
+                android:text="@string/contact_relation"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +146,7 @@
 
 
             <EditText
-                android:id="@+id/editText_BeziehungAnsprechpartner"
+                android:id="@+id/editText_relationContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -154,7 +154,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/beziehungAnsprechpartnerHint"
+                android:hint="@string/contact_relationHint"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -163,14 +163,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_erkrankungen" />
 
             <Button
-                android:id="@+id/button_AddAnsprechpartner"
+                android:id="@+id/button_addContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_blue"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="@string/addAnsprechpartner"
+                android:text="@string/contact_add"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="25sp"
@@ -178,14 +178,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
 
             <TextView
-                android:id="@+id/textView_idAnsprechpartner"
+                android:id="@+id/textView_idContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/idAnsprechpartner"
+                android:text="@string/contact_id"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +193,7 @@
 
 
             <EditText
-                android:id="@+id/editText_idAnsprechpartner"
+                android:id="@+id/editText_idContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -201,7 +201,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/idAnsprechpartnerHint"
+                android:hint="@string/contact_idHint"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -213,37 +213,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                style="?android:attr/buttonBarStyle">
 
                 <Button
-                    android:id="@+id/button_UpdateAnsprechpartner"
+                    android:id="@+id/button_updateContact"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/sup_rounded_corner_blue"
                     android:fontFamily="@font/bree_serif"
-                    android:text="@string/updateAnsprechpartner"
+                    android:text="@string/contact_update"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt"
+                    style="?android:attr/buttonBarButtonStyle"/>
 
                 <Button
-                    android:id="@+id/button_DeleteAnsprechpartner"
+                    android:id="@+id/button_deleteContact"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/sup_rounded_corner_blue"
                     android:fontFamily="@font/bree_serif"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/deleteAnsprechpartner"
+                    android:text="@string/contact_delete"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_notfallkontakt"
+                    style="?android:attr/buttonBarButtonStyle"/>
             </LinearLayout>
 
 

@@ -39,20 +39,20 @@ public class MasterdataFragment extends Fragment {
 
         myDB = new DatabaseHelper1(getActivity());
 
-        editVorname = (EditText) root.findViewById(R.id.editText_VornameUser);
-        editName = (EditText) root.findViewById(R.id.editText_NameUser);
-        editTelefonnummer = (EditText) root.findViewById(R.id.editText_TelefonnummerUser);
-        editGeburtsdatum = (EditText) root.findViewById(R.id.editText_GeburtsdatumUser);
-        editVorerkrankungen = (EditText) root.findViewById(R.id.editText_VorerkrankungenUser);
-        buttonUpdate_Data = (Button) root.findViewById(R.id.button_UpdateUser);
-        buttonDelete_Data = (Button) root.findViewById(R.id.button_DeleteUser);
-        vornameStammdatenView = (TextView) root.findViewById(R.id.editText_VornameUser);
-        nameStammdatenView = (TextView) root.findViewById(R.id.editText_NameUser);
-        telefonnummerStammdatenView = (TextView) root.findViewById(R.id.editText_TelefonnummerUser);
-        geburtsdatumStammdatenView = (TextView) root.findViewById(R.id.editText_GeburtsdatumUser);
-        vorerkrankungenStammdatenView = (TextView) root.findViewById(R.id.editText_VorerkrankungenUser);
-        blutgruppeSpinner = (Spinner) root.findViewById(R.id.spinner_blutgruppe);
-        rhesusfaktorSpinner = (Spinner) root.findViewById(R.id.spinner_rhesusfaktor);
+        editVorname = (EditText) root.findViewById(R.id.editText_prenameUser);
+        editName = (EditText) root.findViewById(R.id.editText_lastnameUser);
+        editTelefonnummer = (EditText) root.findViewById(R.id.editText_telephoneUser);
+        editGeburtsdatum = (EditText) root.findViewById(R.id.editText_birthdayUser);
+        editVorerkrankungen = (EditText) root.findViewById(R.id.editText_preconditionsUser);
+        buttonUpdate_Data = (Button) root.findViewById(R.id.button_updateUser);
+        buttonDelete_Data = (Button) root.findViewById(R.id.button_deleteUser);
+        vornameStammdatenView = (TextView) root.findViewById(R.id.editText_prenameUser);
+        nameStammdatenView = (TextView) root.findViewById(R.id.editText_lastnameUser);
+        telefonnummerStammdatenView = (TextView) root.findViewById(R.id.editText_telephoneUser);
+        geburtsdatumStammdatenView = (TextView) root.findViewById(R.id.editText_birthdayUser);
+        vorerkrankungenStammdatenView = (TextView) root.findViewById(R.id.editText_preconditionsUser);
+        blutgruppeSpinner = (Spinner) root.findViewById(R.id.spinner_bloodGroup);
+        rhesusfaktorSpinner = (Spinner) root.findViewById(R.id.spinner_rhesusFactor);
 
         viewStammdatenUser();
         deleteData();

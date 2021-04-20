@@ -22,21 +22,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_VornameUser"
+                android:id="@+id/textView_prenameUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/vornameStammdaten"
+                android:text="@string/masterdata_prename"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toStartOf="@+id/editText_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText_VornameUser"
+                android:id="@+id/editText_prenameUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -44,7 +44,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/vornameStammdaten"
+                android:hint="@string/masterdata_prename"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -53,21 +53,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_NameUser"
+                android:id="@+id/textView_lastnameUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/nachnameStammdaten"
+                android:text="@string/masterdata_lastname"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_name" />
 
             <EditText
-                android:id="@+id/editText_NameUser"
+                android:id="@+id/editText_lastnameUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -75,7 +75,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/nachnameStammdaten"
+                android:hint="@string/masterdata_lastname"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -84,21 +84,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
             <TextView
-                android:id="@+id/textView_TelefonnummerUser"
+                android:id="@+id/textView_telephoneUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/telefonnummerStammdaten"
+                android:text="@string/masterdata_telephone"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_geburtsdatum" />
 
             <EditText
-                android:id="@+id/editText_TelefonnummerUser"
+                android:id="@+id/editText_telephoneUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -106,7 +106,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/telefonnummerStammdaten"
+                android:hint="@string/masterdata_telephone"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -116,14 +116,14 @@
 
 
             <TextView
-                android:id="@+id/textView_GeburtsdatumUser"
+                android:id="@+id/textView_birthdayUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/geburtsdatumStammdaten"
+                android:text="@string/masterdata_birthday"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +131,7 @@
 
 
             <EditText
-                android:id="@+id/editText_GeburtsdatumUser"
+                android:id="@+id/editText_birthdayUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -139,7 +139,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/geburtsdatumFormatStammdaten"
+                android:hint="@string/masterdata_birthdayFormat"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -148,14 +148,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_erkrankungen" />
 
             <TextView
-                android:id="@+id/textView_BlutgruppeUser"
+                android:id="@+id/textView_bloodgroupUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/blutgruppeStammdaten"
+                android:text="@string/masterdata_bloodgroup"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +167,7 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/spinner_blutgruppe"
+                    android:id="@+id/spinner_bloodGroup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -180,7 +180,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editText_allergien"></Spinner>
 
                 <Spinner
-                    android:id="@+id/spinner_rhesusfaktor"
+                    android:id="@+id/spinner_rhesusFactor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -194,13 +194,13 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView_RhesusfaktorUser"
+                android:id="@+id/textView_rhesusfactorUser"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/rhesusfaktorStammdaten"
+                android:text="@string/masterdata_rhesusfactor"
                 android:textColor="@color/black"
                 android:textSize="0sp"
                 android:visibility="invisible"
@@ -208,21 +208,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_medikation" />
 
             <TextView
-                android:id="@+id/textView_VorerkrankungenUser"
+                android:id="@+id/textView_preconditionsUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/sup_rounded_corner_grey"
                 android:fontFamily="@font/bree_serif"
                 android:gravity="center_horizontal"
-                android:text="@string/vorerkrankungenStammdaten"
+                android:text="@string/masterdata_preconditions"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_blutgruppe" />
 
             <EditText
-                android:id="@+id/editText_VorerkrankungenUser"
+                android:id="@+id/editText_preconditionsUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -230,7 +230,7 @@
                 android:background="@drawable/sup_rounded_corner_white"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="@string/vorerkrankungenStammdaten"
+                android:hint="@string/masterdata_preconditions"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -243,37 +243,38 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                style="?android:attr/buttonBarStyle">
 
                 <Button
-                    android:id="@+id/button_DeleteUser"
+                    android:id="@+id/button_deleteUser"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/sup_rounded_corner_blue"
                     android:fontFamily="@font/bree_serif"
-                    android:text="@string/updateAnsprechpartner"
+                    android:text="@string/masterdata_delete"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    />
+                    style="?android:attr/buttonBarButtonStyle" />
 
                 <Button
-                    android:id="@+id/button_UpdateUser"
+                    android:id="@+id/button_updateUser"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/sup_rounded_corner_blue"
                     android:fontFamily="@font/bree_serif"
-                    android:text="@string/addAnsprechpartner"
+                    android:text="@string/masterdata_saveInput"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                     />
+                    style="?android:attr/buttonBarButtonStyle" />
 
             </LinearLayout>
 

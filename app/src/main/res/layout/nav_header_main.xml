@@ -17,7 +17,6 @@
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_gravity="center_vertical"
-        android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:paddingBottom="@dimen/nav_header_vertical_spacing"
         android:scaleType="fitCenter"

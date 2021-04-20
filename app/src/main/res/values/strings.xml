@@ -1,15 +1,9 @@
 <resources>
+    <!--General Strings-->
     <string name="app_name">SafeGuard</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name= "nav_header_name">SafeGuard</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_name">SafeGuard</string>
 
-
-    <!--Strings fuer Menu-->
+    <!--Strings used in menu-->
     <string name="menu_home">Home</string>
     <string name="menu_emergency">Notruf</string>
     <string name="menu_demo">Demo</string>
@@ -17,7 +11,7 @@
     <string name="menu_contact">Notfallkontakt</string>
     <string name="menu_masterdata">Stammdaten</string>
 
-    <!-- Strings für Notruf-->
+    <!-- Strings used in emergency-->
     <string name="emergency_accident">Vorfall</string>
     <string name="emergency_trafficAccident">Verkehrsunfall</string>
     <string name="emergency_OtherAccident">Andere</string>
@@ -46,33 +40,32 @@
     <string name="emergency_emergencyCall">Notruf absetzen</string>
     <string name="emergency_back">Zurück</string>
 
+    <!--Strings used in FirstAid-->
+    <string name="firstaid_psyCare">Psychologische Betreuung</string>
+    <string name="firstaid_woundCare">Wundbehandlung</string>
+    <string name="firstaid_heartPress">Herzdruckmassage</string>
+    <string name="firstaid_latPos">Stabile Seitenlage</string>
 
+    <!--Strings used in Masterdata-->
+    <string name="masterdata_prename">Vorname</string>
+    <string name="masterdata_lastname">Nachname</string>
+    <string name="masterdata_telephone">Telefonnummer</string>
+    <string name="masterdata_birthday">Geburtsdatum</string>
+    <string name="masterdata_birthdayFormat">Geburtsdatum TT.MM.JJJJ</string>
+    <string name="masterdata_bloodgroup">Blutgruppe</string>
+    <string name="masterdata_rhesusfactor">Rhesusfaktor</string>
+    <string name="masterdata_preconditions">Vorerkrankungen</string>
+    <string name="masterdata_saveInput">Speichern</string>
+    <string name="masterdata_delete">Löschen</string>
 
+    <!--Strings used in Contact-->
+    <string name="contact_relationHint">Beziehung</string>
+    <string name="contact_update">Ändern</string>
+    <string name="contact_delete">Löschen</string>
+    <string name="contact_view">Ansprechpartner ansehen</string>
+    <string name="contact_add">Hinzufügen</string>
+    <string name="contact_relation">Beziehung</string>
+    <string name="contact_id">ID des Ansprechpartners</string>
+    <string name="contact_idHint">ID des Ansprechpartners</string>
 
-
-    <!--Strings fuer Stammdaten-->
-    <string name="vornameStammdaten">Vorname</string>
-    <string name="nachnameStammdaten">Nachname</string>
-    <string name="telefonnummerStammdaten">Telefonnummer</string>
-    <string name="geburtsdatumStammdaten">Geburtsdatum</string>
-    <string name="geburtsdatumFormatStammdaten">Geburtsdatum TT.MM.JJJJ</string>
-    <string name="beziehungAnsprechpartnerHint">Beziehung</string>
-    <string name="blutgruppeStammdaten">Blutgruppe</string>
-    <string name="rhesusfaktorStammdaten">Rhesusfaktor</string>
-    <string name="vorerkrankungenStammdaten">Vorerkrankungen</string>
-    <string name="speichernEingabe">Speichern</string>
-    <string name="updateAnsprechpartner">Ändern</string>
-    <string name="löschenDerStammdaten">Löschen</string>
-    <string name="deleteAnsprechpartner">Löschen</string>
-    <string name="viewAnsprechpartner">Ansprechpartner ansehen</string>
-    <string name="addAnsprechpartner">Hinzufügen</string>
-    <string name="beziehungAnsprechpartner">Beziehung</string>
-    <string name="idAnsprechpartner">ID des Ansprechpartners</string>
-    <string name="idAnsprechpartnerHint">ID des Ansprechpartners</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--Strings fuer Emergency-->
-    <string name="Bike">Motorrad / Fahrrad </string>
 </resources>

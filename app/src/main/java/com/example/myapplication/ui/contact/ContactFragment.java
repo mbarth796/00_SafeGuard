@@ -32,15 +32,15 @@ public class ContactFragment extends Fragment {
         myDB = new DatabaseHelper2(getActivity());
 
                 //Cast für die Eingabefelder
-        editid = (EditText) root.findViewById(R.id.editText_idAnsprechpartner);
-        editVorname = (EditText) root.findViewById(R.id.editText_VornameAnsprechpartner);
-        editName = (EditText) root.findViewById(R.id.editText_NameAnsprechpartner);
-        editTelefonnummer = (EditText) root.findViewById(R.id.editText_TelefonnummerAnsprechpartner);
-        editBeziehung = (EditText) root.findViewById(R.id.editText_BeziehungAnsprechpartner);
-        buttonAdd_Contact = (Button) root.findViewById(R.id.button_AddAnsprechpartner);
-        buttonViewAll_Contact = (Button) root.findViewById(R.id.button_ViewAnsprechpartner);
-        buttonUpdate_Contact = (Button) root.findViewById(R.id.button_UpdateAnsprechpartner);
-        buttonDelete_Contact = (Button) root.findViewById(R.id.button_DeleteAnsprechpartner);
+        editid = (EditText) root.findViewById(R.id.editText_idContact);
+        editVorname = (EditText) root.findViewById(R.id.editText_prenameContact);
+        editName = (EditText) root.findViewById(R.id.editText_lastnameContact);
+        editTelefonnummer = (EditText) root.findViewById(R.id.editText_telephoneContact);
+        editBeziehung = (EditText) root.findViewById(R.id.editText_relationContact);
+        buttonAdd_Contact = (Button) root.findViewById(R.id.button_addContact);
+        buttonViewAll_Contact = (Button) root.findViewById(R.id.button_viewContact);
+        buttonUpdate_Contact = (Button) root.findViewById(R.id.button_updateContact);
+        buttonDelete_Contact = (Button) root.findViewById(R.id.button_deleteContact);
 
         //Ausführen aller Datenbankmethoden
         AddData();

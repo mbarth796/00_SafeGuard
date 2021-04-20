@@ -32,12 +32,12 @@ public class FirstaidFragment extends Fragment {
                 new ViewModelProvider(this).get(FirstaidViewModel.class);
         View root = inflater.inflate(R.layout.fragment_firstaid, container, false);
 
-        Button seitenlage = (Button) root.findViewById(R.id.button_Seitenlage);
-        Button herzdruck = (Button) root.findViewById(R.id.button_Herzdruck);
-        Button behandlung = (Button) root.findViewById(R.id.button_Behandlung);
-        Button psybetreuung = (Button) root.findViewById(R.id.button_PsyBetreuung);
+        Button latPos = (Button) root.findViewById(R.id.button_latPos);
+        Button heartPress = (Button) root.findViewById(R.id.button_heartPress);
+        Button woundCare = (Button) root.findViewById(R.id.button_woundCare);
+        Button psyCare = (Button) root.findViewById(R.id.button_psyCare);
 
-        seitenlage.setOnClickListener(
+        latPos.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -47,7 +47,7 @@ public class FirstaidFragment extends Fragment {
                 }
         );
 
-        herzdruck.setOnClickListener(
+        heartPress.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -57,7 +57,7 @@ public class FirstaidFragment extends Fragment {
                 }
         );
 
-        behandlung.setOnClickListener(
+        woundCare.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -67,7 +67,7 @@ public class FirstaidFragment extends Fragment {
                 }
         );
 
-        psybetreuung.setOnClickListener(
+        psyCare.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

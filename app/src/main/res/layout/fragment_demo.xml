@@ -5,18 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.demo.DemoFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Demo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Inhalt folgt noch"
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:paddingTop="300dp"
-        android:textSize="32dp"/>
+        android:text=""
+        />
 
  </FrameLayout>
