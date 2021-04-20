@@ -13,7 +13,50 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.location.Location;
+import android.location.LocationListener;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import com.example.myapplication.ui.emergency.EmergencyFragment;
+import com.example.myapplication.ui.masterdata.DatabaseHelper1;
+import com.example.myapplication.R;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -24,7 +67,7 @@ import com.example.myapplication.ui.masterdata.DatabaseHelper1;
 import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 
-public class DemoFragment extends Fragment {
+public class DemoFragment extends Fragment implements LocationListener {
 
     private DemoViewModel emergencyViewModel;
 
@@ -51,7 +94,10 @@ public class DemoFragment extends Fragment {
     private ScrollView scrollView;
     DatabaseHelper1 myDB;
 
-
+    private LocationManager locationManager = null;
+    String gps = "";
+    private static final long MIN_TIME_TO_REFRESH = 1000L;
+    private static final float MIN_DISTANCE_TO_REFRESH = 0F;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -108,6 +154,10 @@ public class DemoFragment extends Fragment {
 
         scrollView = root.findViewById(R.id.scrollView_emergency);
 
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_TO_REFRESH, MIN_DISTANCE_TO_REFRESH, DemoFragment.this);
+        }
 
 // Accident
         buttonTrafficAccident.setOnClickListener(new View.OnClickListener() {
@@ -641,6 +691,7 @@ public class DemoFragment extends Fragment {
         /*if(!editTextSpecialInformation.getText().equals("")){
             ret = ret + "Genauere Beschreibung:" + "\n" +  editTextSpecialInformation.getText();
         }*/
+        ret = ret + gps;
 
         return ret;
     }
@@ -669,5 +720,24 @@ public class DemoFragment extends Fragment {
                 scrollView.scrollTo(0, scrollView.getBottom());
             }
         });
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        String fullAddress = null;
+        Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
+        List<Address> addresses;
+        try {
+            addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            if (addresses.size() > 0) {
+                fullAddress = addresses.get(0).getAddressLine(0);
+            }
+        } catch (IOException e) {
+            fullAddress = "unknown";
+            e.printStackTrace();
+        }
+        gps = "Adresse: " + fullAddress + "\n" + "Breitengrad: " + String.valueOf(location.getLatitude() + "\n" + "Längengrad: " + String.valueOf(location.getLongitude()) + "\n");
+        locationManager.removeUpdates(DemoFragment.this);
     }
 }

@@ -76,8 +76,8 @@ public class EmergencyFragment extends Fragment implements LocationListener {
 
     private LocationManager locationManager = null;
     String gps = "";
-    private static final long MIN_TIME_TO_REFRESH = 1000L;
-    private static final float MIN_DISTANCE_TO_REFRESH = 0F;
+    private static final long MIN_TIME_TO_REFRESH = 10L;
+    private static final float MIN_DISTANCE_TO_REFRESH = 1F;
 
 
     @SuppressLint("MissingPermission")
@@ -801,20 +801,34 @@ public class EmergencyFragment extends Fragment implements LocationListener {
     }
 
     @Override
+    public void onProviderEnabled (String provider) {
+
+    }
+
+    @Override
+    public void onStatusChanged (String provider, int status, Bundle extras) {
+    }
+
+    @Override
+    public void onProviderDisabled (String provider) {
+    }
+
+    @Override
     public void onLocationChanged (Location location) {
 
-            String fullAddress = null;
-            Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
-            List<Address> addresses;
-            try {
-                addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                if (addresses.size() > 0) {
-                    fullAddress = addresses.get(0).getAddressLine(0);
-                }
-            } catch (IOException e) {
-                fullAddress = "unknown";
-                e.printStackTrace();
+        String fullAddress = null;
+        Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
+        List<Address> addresses;
+        try {
+            addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            if (addresses.size() > 0) {
+                fullAddress = addresses.get(0).getAddressLine(0);
             }
-           gps = "Adresse: " + fullAddress + "\n" + "Breitengrad: " + String.valueOf(location.getLatitude() + "\n" + " Längengrad: " + String.valueOf(location.getLongitude()) + "\n");
+        } catch (IOException e) {
+            fullAddress = "unknown";
+            e.printStackTrace();
+        }
+        gps = "Adresse: " + fullAddress + "\n" + "Breitengrad: " + String.valueOf(location.getLatitude() + "\n" + "Längengrad: " + String.valueOf(location.getLongitude()) + "\n");
+        locationManager.removeUpdates(EmergencyFragment.this);
     }
 }
