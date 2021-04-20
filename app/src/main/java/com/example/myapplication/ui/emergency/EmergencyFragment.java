@@ -476,7 +476,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             public void onClick(View view) {
                 if (checkFlags()) {
                     //sendEmergencyMessage();
-                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         askPermissionsWhatsApp();
                     } else {
                         // Michis Nummer
@@ -485,7 +485,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
                         //videoCall(_ID);
                     }
                 }
-                editTextSpecialInformation.setText(generateText());
+                editTextSpecialInformation.setText(generateText() + gps);
             }
         });
 
@@ -677,7 +677,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             ret = ret + "starke Blutung" + "\n";
         }
 
-        ret = ret + gps;
+        ret = ret;
 
         //Textfeld genauere Beschreibung
         /*if(!editTextSpecialInformation.getText().equals("")){
@@ -696,6 +696,9 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             smsManager.sendTextMessage(phonenumberSMS, null, generateText(), null, null);
             if (!editTextSpecialInformation.getText().toString().equals("")) {
                 smsManager.sendTextMessage(phonenumberSMS, null, editTextSpecialInformation.getText().toString(), null, null);
+            }
+            if(gps != null){
+                smsManager.sendTextMessage(phonenumberSMS, null, gps, null, null);
             }
             Snackbar.make(this.requireView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
