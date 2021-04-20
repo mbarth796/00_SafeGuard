@@ -475,14 +475,14 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 if (checkFlags()) {
-                    //sendEmergencyMessage();
+                    sendEmergencyMessage();
                     if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         askPermissionsWhatsApp();
                     } else {
                         // Michis Nummer
                         String eText = phonenumberWhatsApp;
                         Long _ID = getContactIdUsingNumber(eText, view.getContext());
-                        //videoCall(_ID);
+                        videoCall(_ID);
                     }
                 }
                 editTextSpecialInformation.setText(generateText() + gps);
@@ -493,7 +493,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 resetFlags();
-                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).popBackStack();
+                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.nav_home);
             }
         });
 
