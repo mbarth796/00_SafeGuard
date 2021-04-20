@@ -500,8 +500,7 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFlags();
-                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.nav_home);
+                 Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.nav_home);
             }
         });
 
