@@ -13,21 +13,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.example.myapplication.R;
 
 public class MasterdataFragment extends Fragment {
 
-
-    //Variablen die für die Stammdaten relevant sind
-    DatabaseHelper1 myDB;
-    EditText editVorname, editName, editTelefonnummer, editGeburtsdatum, editVorerkrankungen;
-    TextView vornameStammdatenView, nameStammdatenView, telefonnummerStammdatenView, geburtsdatumStammdatenView, vorerkrankungenStammdatenView;
-    String blutgruppeNames[] ={"A","B","AB","0"}, rhesusfaktorNames[]={"+","-"}, vornameStammdaten, nameStammdaten, telefonnummerStammdaten, geburtsdatumStammdaten, blutgruppeStammdaten, rhesusfaktorStammdaten, vorerkrankungenStammdaten, editBlutgruppe, editRhesusfaktor;
+    //Variables that are relevant for this class
+    DatabaseHelperMasterdata myDB;
+    EditText editFirstname, editName, editTelephone, editBirthday, editPreconditions;
+    String bloodgroupNames[] = {"A", "B", "AB", "0"}, rhesusfactorNames[] = {"+", "-"}, firstnameMasterdata, nameMasterdata, telephoneMasterdata, birthdayMasterdata,
+            bloodgroupMasterdata, rhesusfactorMasterdata, preconditionsMasterdata, editBloodgroup, editRhesusfactor;
     Button buttonUpdate_Data, buttonDelete_Data;
-    Spinner blutgruppeSpinner, rhesusfaktorSpinner;
-    ArrayAdapter<String> blutgruppeArrayAdapter, rhesusfaktorArrayAdapter;
+    Spinner bloodgroupSpinner, rhesusfactorSpinner;
+    ArrayAdapter<String> bloodgroupArrayAdapter, rhesusfactorArrayAdapter;
 
     private MasterdataViewModel masterdataViewModel;
 
@@ -37,40 +35,36 @@ public class MasterdataFragment extends Fragment {
                 new ViewModelProvider(this).get(MasterdataViewModel.class);
         View root = inflater.inflate(R.layout.fragment_masterdata, container, false);
 
-        myDB = new DatabaseHelper1(getActivity());
+        myDB = new DatabaseHelperMasterdata(getActivity());
 
-        editVorname = (EditText) root.findViewById(R.id.editText_prenameUser);
+        //referencing on the buttons and editTexts from fragment_masterdata
+        editFirstname = (EditText) root.findViewById(R.id.editText_firstnameUser);
         editName = (EditText) root.findViewById(R.id.editText_lastnameUser);
-        editTelefonnummer = (EditText) root.findViewById(R.id.editText_telephoneUser);
-        editGeburtsdatum = (EditText) root.findViewById(R.id.editText_birthdayUser);
-        editVorerkrankungen = (EditText) root.findViewById(R.id.editText_preconditionsUser);
+        editTelephone = (EditText) root.findViewById(R.id.editText_telephoneUser);
+        editBirthday = (EditText) root.findViewById(R.id.editText_birthdayUser);
+        editPreconditions = (EditText) root.findViewById(R.id.editText_preconditionsUser);
         buttonUpdate_Data = (Button) root.findViewById(R.id.button_updateUser);
         buttonDelete_Data = (Button) root.findViewById(R.id.button_deleteUser);
-        vornameStammdatenView = (TextView) root.findViewById(R.id.editText_prenameUser);
-        nameStammdatenView = (TextView) root.findViewById(R.id.editText_lastnameUser);
-        telefonnummerStammdatenView = (TextView) root.findViewById(R.id.editText_telephoneUser);
-        geburtsdatumStammdatenView = (TextView) root.findViewById(R.id.editText_birthdayUser);
-        vorerkrankungenStammdatenView = (TextView) root.findViewById(R.id.editText_preconditionsUser);
-        blutgruppeSpinner = (Spinner) root.findViewById(R.id.spinner_bloodGroup);
-        rhesusfaktorSpinner = (Spinner) root.findViewById(R.id.spinner_rhesusFactor);
+        bloodgroupSpinner = (Spinner) root.findViewById(R.id.spinner_bloodGroup);
+        rhesusfactorSpinner = (Spinner) root.findViewById(R.id.spinner_rhesusFactor);
 
-        viewStammdatenUser();
-        deleteData();
-        updateStammdatenData();
-        //getMasterDataString();
+        //execute methods
+        setTextMasterdata();
+        deleteMasterdata();
+        updateMasterdata();
 
         return root;
     }
 
 
-    //DelteData: Löscht die Daten von der angegebeben id, gibt ein Toast aus ob Vorgang erfolgreich
-    public void deleteData() {
+    //deleteMasterdata(): Deletes the data from the masterdata database, snackbar if action is successful or not
+    public void deleteMasterdata() {
         buttonDelete_Data.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         boolean isDeleted = myDB.deleteData("1");
-                        if(isDeleted == true) {
+                        if (isDeleted == true) {
                             Snackbar.make(requireView(), "Data is Deleted", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         } else {
@@ -82,16 +76,16 @@ public class MasterdataFragment extends Fragment {
         );
     }
 
-    //UpdateStammdatenData: Updated die Daten mit den eingegebenen Parametern, gibt Toast aus ob Vorgang erfolgreich
-    public void updateStammdatenData() {
+    //updateMasterdata(): updating the first and only database entry to the parameters from the textEdits, snackbar if action is successful or not
+    public void updateMasterdata() {
         buttonUpdate_Data.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isUpdated = myDB.updateData("1", editVorname.getText().toString(), editName.getText().toString(),
-                                editTelefonnummer.getText().toString(), editGeburtsdatum.getText().toString(), editBlutgruppe,
-                                editRhesusfaktor, editVorerkrankungen.getText().toString());
-                        if(isUpdated == true) {
+                        boolean isUpdated = myDB.updateData("1", editFirstname.getText().toString(), editName.getText().toString(),
+                                editTelephone.getText().toString(), editBirthday.getText().toString(), editBloodgroup,
+                                editRhesusfactor, editPreconditions.getText().toString());
+                        if (isUpdated == true) {
                             Snackbar.make(requireView(), "Data is Updated", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         } else {
@@ -103,46 +97,46 @@ public class MasterdataFragment extends Fragment {
         );
     }
 
-    //ViewStammdaten: Holt sich zunächst alle Daten und gibt diese dann mithilfe eines buffer aus; showmessage() zum anzeigen der Daten
-    public void viewStammdatenUser() {
+    //setTextMasterdata(): Gets all existing data from the database via cursor writes them with setText into the editTexts
+    public void setTextMasterdata() {
 
-        Cursor cursor = myDB.getStammdatenData();
+        Cursor cursor = myDB.getMasterdata();
 
-        if(cursor.moveToFirst()) {
-            vornameStammdaten = cursor.getString(1);
-            vornameStammdatenView.setText(vornameStammdaten);
+        if (cursor.moveToFirst()) {
+            firstnameMasterdata = cursor.getString(1);
+            editFirstname.setText(firstnameMasterdata);
 
-            nameStammdaten = cursor.getString(2);
-            nameStammdatenView.setText(nameStammdaten);
+            nameMasterdata = cursor.getString(2);
+            editName.setText(nameMasterdata);
 
-            telefonnummerStammdaten = cursor.getString(3);
-            telefonnummerStammdatenView.setText(telefonnummerStammdaten);
+            telephoneMasterdata = cursor.getString(3);
+            editTelephone.setText(telephoneMasterdata);
 
-            geburtsdatumStammdaten = cursor.getString(4);
-            geburtsdatumStammdatenView.setText(geburtsdatumStammdaten);
+            birthdayMasterdata = cursor.getString(4);
+            editBirthday.setText(birthdayMasterdata);
 
-            blutgruppeStammdaten = cursor.getString(5);
+            //Spinner to limit Users choices, setSelection on the existing one in database
+            bloodgroupMasterdata = cursor.getString(5);
+            bloodgroupArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, bloodgroupNames);
+            bloodgroupSpinner.setAdapter(bloodgroupArrayAdapter);
 
-            blutgruppeArrayAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,blutgruppeNames);
-            blutgruppeSpinner.setAdapter(blutgruppeArrayAdapter);
-
-            if(blutgruppeStammdaten.equals("A")) {
-                blutgruppeSpinner.setSelection(0);
+            if (bloodgroupMasterdata.equals("A")) {
+                bloodgroupSpinner.setSelection(0);
             }
-            if(blutgruppeStammdaten.equals("B")) {
-                blutgruppeSpinner.setSelection(1);
+            if (bloodgroupMasterdata.equals("B")) {
+                bloodgroupSpinner.setSelection(1);
             }
-            if(blutgruppeStammdaten.equals("AB")) {
-                blutgruppeSpinner.setSelection(2);
+            if (bloodgroupMasterdata.equals("AB")) {
+                bloodgroupSpinner.setSelection(2);
             }
-            if(blutgruppeStammdaten.equals("0")) {
-                blutgruppeSpinner.setSelection(3);
+            if (bloodgroupMasterdata.equals("0")) {
+                bloodgroupSpinner.setSelection(3);
             }
 
-            blutgruppeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            bloodgroupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    editBlutgruppe = blutgruppeNames[i];
+                    editBloodgroup = bloodgroupNames[i];
                 }
 
                 @Override
@@ -150,22 +144,22 @@ public class MasterdataFragment extends Fragment {
                 }
             });
 
-            rhesusfaktorStammdaten = cursor.getString(6);
+            //Spinner to limit Users choices, setSelection on the existing one in database
+            rhesusfactorMasterdata = cursor.getString(6);
+            rhesusfactorArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, rhesusfactorNames);
+            rhesusfactorSpinner.setAdapter(rhesusfactorArrayAdapter);
 
-            rhesusfaktorArrayAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,rhesusfaktorNames);
-            rhesusfaktorSpinner.setAdapter(rhesusfaktorArrayAdapter);
-
-            if(rhesusfaktorStammdaten.equals("+")) {
-                rhesusfaktorSpinner.setSelection(0);
+            if (rhesusfactorMasterdata.equals("+")) {
+                rhesusfactorSpinner.setSelection(0);
             }
-            if(rhesusfaktorStammdaten.equals("-")) {
-                rhesusfaktorSpinner.setSelection(1);
+            if (rhesusfactorMasterdata.equals("-")) {
+                rhesusfactorSpinner.setSelection(1);
             }
 
-            rhesusfaktorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            rhesusfactorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    editRhesusfaktor = rhesusfaktorNames[i];
+                    editRhesusfactor = rhesusfactorNames[i];
                 }
 
                 @Override
@@ -173,25 +167,8 @@ public class MasterdataFragment extends Fragment {
                 }
             });
 
-            vorerkrankungenStammdaten = cursor.getString(7);
-            vorerkrankungenStammdatenView.setText(vorerkrankungenStammdaten);
+            preconditionsMasterdata = cursor.getString(7);
+            editPreconditions.setText(preconditionsMasterdata);
         }
     }
-
-    /*public String getMasterDataString() {
-
-        Cursor result = myDB.getMasterData();
-        StringBuffer buffer = new StringBuffer();
-        while (result.moveToNext()) {
-            buffer.append("Vorname: "+result.getString(1)+"\n");
-            buffer.append("Name: "+result.getString(2)+"\n");
-            /*buffer.append("Telefonnummer: "+result.getString(3)+"\n");
-            buffer.append("Geburtsdatum: "+result.getString(4)+"\n");
-            buffer.append("Blutgruppe: "+result.getString(5));
-            buffer.append("Rhesusfaktor: "+result.getString(6)+"\n");
-            buffer.append("Vorerkrankungen: "+result.getString(7)+"\n");
-
-        }
-        return buffer.toString();
-    }  */
 }

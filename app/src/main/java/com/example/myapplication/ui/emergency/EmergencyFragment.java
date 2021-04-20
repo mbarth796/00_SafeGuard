@@ -36,7 +36,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.myapplication.ui.masterdata.DatabaseHelper1;
+import com.example.myapplication.ui.masterdata.DatabaseHelperMasterdata;
 import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -72,7 +72,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
 
     private Button buttonBack, buttonEmergencyCall;
     private ScrollView scrollView;
-    DatabaseHelper1 myDB;
+    DatabaseHelperMasterdata myDB;
 
     private LocationManager locationManager = null;
     String gps = "";
@@ -496,7 +496,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             }
         });
 
-        myDB = new DatabaseHelper1(getActivity());
+        myDB = new DatabaseHelperMasterdata(getActivity());
 
         return root;
     }
@@ -614,7 +614,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
     public String generateText() {
         String ret;
 
-        Cursor result = myDB.getMasterData();
+        Cursor result = myDB.getMasterdata();
         StringBuffer buffer = new StringBuffer();
         while (result.moveToNext()) {
             buffer.append(result.getString(1) + " ");

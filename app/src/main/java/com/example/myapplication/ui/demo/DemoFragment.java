@@ -14,58 +14,25 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.telephony.SmsManager;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.location.Location;
 import android.location.LocationListener;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
-import com.example.myapplication.ui.emergency.EmergencyFragment;
-import com.example.myapplication.ui.masterdata.DatabaseHelper1;
+import com.example.myapplication.ui.masterdata.DatabaseHelperMasterdata;
 import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
-import com.example.myapplication.ui.masterdata.DatabaseHelper1;
-import com.example.myapplication.R;
-import com.google.android.material.snackbar.Snackbar;
 
 public class DemoFragment extends Fragment implements LocationListener {
 
@@ -92,7 +59,7 @@ public class DemoFragment extends Fragment implements LocationListener {
 
     private Button buttonBack, buttonEmergencyCall;
     private ScrollView scrollView;
-    DatabaseHelper1 myDB;
+    DatabaseHelperMasterdata myDB;
 
     private LocationManager locationManager = null;
     String gps = "";
@@ -122,34 +89,34 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonTrafficAccident = root.findViewById(R.id.button_trafficAccident);
         buttonOtherAccident = root.findViewById(R.id.button_otherAccident);
 
-        buttonCar =  root.findViewById(R.id.button_car);
-        buttonBike =  root.findViewById(R.id.button_bike);
-        buttonPedestrian =  root.findViewById(R.id.button_pedestrian);
+        buttonCar = root.findViewById(R.id.button_car);
+        buttonBike = root.findViewById(R.id.button_bike);
+        buttonPedestrian = root.findViewById(R.id.button_pedestrian);
         setTrafficAccidentTypeInvisible();
 
-        button1 =  root.findViewById(R.id.button_one);
-        button2 =  root.findViewById(R.id.button_two);
-        button3to5 =  root.findViewById(R.id.button_threeToFive);
-        button6to10 =  root.findViewById(R.id.button_sixToTen);
-        buttonMoreThenTen =  root.findViewById(R.id.button_moreThenTen);
+        button1 = root.findViewById(R.id.button_one);
+        button2 = root.findViewById(R.id.button_two);
+        button3to5 = root.findViewById(R.id.button_threeToFive);
+        button6to10 = root.findViewById(R.id.button_sixToTen);
+        buttonMoreThenTen = root.findViewById(R.id.button_moreThenTen);
         setAmountHurtInvisible();
 
-        buttonAdults =  root.findViewById(R.id.button_adults);
-        buttonBabys =  root.findViewById(R.id.button_babys);
-        buttonChildren =  root.findViewById(R.id.button_children);
+        buttonAdults = root.findViewById(R.id.button_adults);
+        buttonBabys = root.findViewById(R.id.button_babys);
+        buttonChildren = root.findViewById(R.id.button_children);
         setGroupInvisible();
 
-        buttonSqueezed =  root.findViewById(R.id.button_squeezed);
-        buttonFire =  root.findViewById(R.id.button_fire);
-        buttonUnconscious =  root.findViewById(R.id.button_unconscious);
-        buttonFleshWound =  root.findViewById(R.id.button_fleshWound);
-        buttonBrokenBone =  root.findViewById(R.id.button_brokenBone);
-        buttonStrongBleeding =  root.findViewById(R.id.button_strongBleeding);
-        editTextSpecialInformation =  root.findViewById(R.id.editText_specialInformation);
+        buttonSqueezed = root.findViewById(R.id.button_squeezed);
+        buttonFire = root.findViewById(R.id.button_fire);
+        buttonUnconscious = root.findViewById(R.id.button_unconscious);
+        buttonFleshWound = root.findViewById(R.id.button_fleshWound);
+        buttonBrokenBone = root.findViewById(R.id.button_brokenBone);
+        buttonStrongBleeding = root.findViewById(R.id.button_strongBleeding);
+        editTextSpecialInformation = root.findViewById(R.id.editText_specialInformation);
         setDescriptionInvisible();
 
-        buttonBack =  root.findViewById(R.id.button_back);
-        buttonEmergencyCall =  root.findViewById(R.id.button_EmergencyCall);
+        buttonBack = root.findViewById(R.id.button_back);
+        buttonEmergencyCall = root.findViewById(R.id.button_EmergencyCall);
         buttonEmergencyCall.setVisibility(View.GONE);
 
         scrollView = root.findViewById(R.id.scrollView_emergency);
@@ -163,17 +130,17 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonTrafficAccident.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(accident != 0){
+                if (accident != 0) {
                     accident = 0;
                     //buttonTrafficAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_red));
                     //buttonOtherAccident.setBackground(getResources().getDrawable(R.drawable.sup_rounded_corner_blue));
-                    buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setTrafficAccidentTypeVisible();
                     scrollToEnd();
                 } else {
                     accident = -1;
-                    buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -181,8 +148,8 @@ public class DemoFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 accident = 1;
-                buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                buttonOtherAccident.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                buttonTrafficAccident.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 //Anzeigen eines Fehlerbildschirms bzw. Weiterleitung zum normalen Anruf
                 popUpOtherAccident();
             }
@@ -192,48 +159,48 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(trafficAccidentType != 0){
+                if (trafficAccidentType != 0) {
                     trafficAccidentType = 0;
-                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
                     scrollToEnd();
                 } else {
                     trafficAccidentType = -1;
-                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonBike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(trafficAccidentType != 1){
+                if (trafficAccidentType != 1) {
                     trafficAccidentType = 1;
-                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
                     scrollToEnd();
                 } else {
                     trafficAccidentType = -1;
-                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonPedestrian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(trafficAccidentType != 2) {
+                if (trafficAccidentType != 2) {
                     trafficAccidentType = 2;
-                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonCar.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonBike.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setAmountHurtVisible();
                     scrollToEnd();
                 } else {
                     trafficAccidentType = -1;
-                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonPedestrian.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -242,90 +209,90 @@ public class DemoFragment extends Fragment implements LocationListener {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(amountHurt != 1) {
+                if (amountHurt != 1) {
                     amountHurt = 1;
-                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
                     scrollToEnd();
                 } else {
                     amountHurt = -1;
-                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(amountHurt != 2) {
+                if (amountHurt != 2) {
                     amountHurt = 2;
-                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
                     scrollToEnd();
                 } else {
                     amountHurt = -1;
-                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         button3to5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(amountHurt != 3) {
+                if (amountHurt != 3) {
                     amountHurt = 3;
-                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
                     scrollToEnd();
                 } else {
                     amountHurt = -1;
-                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         button6to10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(amountHurt != 6) {
+                if (amountHurt != 6) {
                     amountHurt = 6;
-                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
                     scrollToEnd();
                 } else {
                     amountHurt = -1;
-                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonMoreThenTen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(amountHurt != 11) {
+                if (amountHurt != 11) {
                     amountHurt = 11;
-                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    button1.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button2.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    button1.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button2.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button3to5.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    button6to10.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setGroupVisible();
                     scrollToEnd();
                 } else {
                     amountHurt = -1;
-                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonMoreThenTen.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -334,48 +301,48 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonAdults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(group != 0) {
+                if (group != 0) {
                     group = 0;
-                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
                     scrollToEnd();
                 } else {
                     group = -1;
-                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonBabys.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(group != 1) {
+                if (group != 1) {
                     group = 1;
-                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
                     scrollToEnd();
                 } else {
                     group = -1;
-                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(group != 2) {
+                if (group != 2) {
                     group = 2;
-                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
-                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
-                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
+                    buttonAdults.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
+                    buttonBabys.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                     setDescriptionVisible();
                     scrollToEnd();
                 } else {
                     group = -1;
-                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonChildren.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -384,84 +351,84 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonSqueezed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(squeezed != 1) {
+                if (squeezed != 1) {
                     squeezed = 1;
-                    buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
                     scrollToEnd();
                 } else {
                     squeezed = -1;
-                    buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonSqueezed.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fire != 1) {
+                if (fire != 1) {
                     fire = 1;
-                    buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
                     scrollToEnd();
                 } else {
                     fire = -1;
-                    buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonFire.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonUnconscious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(unconscious != 1) {
+                if (unconscious != 1) {
                     unconscious = 1;
-                    buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
                     scrollToEnd();
                 } else {
                     unconscious = -1;
-                    buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonUnconscious.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonFleshWound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fleshWound != 1) {
+                if (fleshWound != 1) {
                     fleshWound = 1;
-                    buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
                     scrollToEnd();
                 } else {
                     fleshWound = -1;
-                    buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonFleshWound.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonBrokenBone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(brokenBone != 1) {
+                if (brokenBone != 1) {
                     brokenBone = 1;
-                    buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
                     scrollToEnd();
                 } else {
                     brokenBone = -1;
-                    buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonBrokenBone.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
         buttonStrongBleeding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(strongBleed != 1) {
+                if (strongBleed != 1) {
                     strongBleed = 1;
-                    buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_red, null));
+                    buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_red, null));
                     buttonEmergencyCall.setVisibility(View.VISIBLE);
                     scrollToEnd();
                 } else {
                     strongBleed = -1;
-                    buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.sup_rounded_corner_blue, null));
+                    buttonStrongBleeding.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.sup_rounded_corner_blue, null));
                 }
             }
         });
@@ -487,7 +454,7 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkFlags()){
+                if (checkFlags()) {
                     androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
                     builder.setCancelable(true);
                     builder.setTitle("Glückwunsch, Sie Haben die Demo erfolgreich abgeschlossen!!");
@@ -500,19 +467,18 @@ public class DemoFragment extends Fragment implements LocationListener {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.nav_home);
+                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.nav_home);
             }
         });
 
-        myDB = new DatabaseHelper1(getActivity());
+        myDB = new DatabaseHelperMasterdata(getActivity());
 
         return root;
     }
 
 
-
     //setzt alle Flags zurück, auf ungültige Werte
-    public void resetFlags(){
+    public void resetFlags() {
         accident = -1;
         trafficAccidentType = -1;
         amountHurt = -1;
@@ -526,7 +492,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Angabe des Verkehrsunfalltyps aus Überschrift und Buttons auf sichtar
-    public void setTrafficAccidentTypeVisible(){
+    public void setTrafficAccidentTypeVisible() {
         tvTrafficAccidentType.setVisibility(View.VISIBLE);
         buttonCar.setVisibility(View.VISIBLE);
         buttonBike.setVisibility(View.VISIBLE);
@@ -534,7 +500,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Angabe des Verkehrsunfalltyps aus Überschrift und Buttons auf unsichtbar
-    public void setTrafficAccidentTypeInvisible(){
+    public void setTrafficAccidentTypeInvisible() {
         tvTrafficAccidentType.setVisibility(View.GONE);
         buttonCar.setVisibility(View.GONE);
         buttonBike.setVisibility(View.GONE);
@@ -542,7 +508,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Anzahl der verletzten Personen aus Überschrift und Buttons auf sichtbar
-    public void setAmountHurtVisible(){
+    public void setAmountHurtVisible() {
         tvAmountHurt.setVisibility(View.VISIBLE);
         button1.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -552,7 +518,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Anzahl der verletzten Personen aus Überschrift und Buttons auf unsichtbar
-    public void setAmountHurtInvisible(){
+    public void setAmountHurtInvisible() {
         tvAmountHurt.setVisibility(View.GONE);
         button1.setVisibility(View.GONE);
         button2.setVisibility(View.GONE);
@@ -562,7 +528,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Personengruppe aus Überschrift und Buttons auf sichtbar
-    public void setGroupVisible(){
+    public void setGroupVisible() {
         tvGroup.setVisibility(View.VISIBLE);
         buttonAdults.setVisibility(View.VISIBLE);
         buttonBabys.setVisibility(View.VISIBLE);
@@ -570,7 +536,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Personengruppe aus Überschrift und Buttons auf unsichtbar
-    public void setGroupInvisible(){
+    public void setGroupInvisible() {
         tvGroup.setVisibility(View.GONE);
         buttonAdults.setVisibility(View.GONE);
         buttonBabys.setVisibility(View.GONE);
@@ -578,7 +544,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Beschreibung aus Überschrift, Buttons und EditTextauf sichtbar
-    public void setDescriptionVisible(){
+    public void setDescriptionVisible() {
         tvDescription.setVisibility(View.VISIBLE);
         buttonSqueezed.setVisibility(View.VISIBLE);
         buttonFire.setVisibility(View.VISIBLE);
@@ -590,7 +556,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //setzt den Block zur Beschreibung aus Überschrift, Buttons und EditText auf unsichtbar
-    public void setDescriptionInvisible(){
+    public void setDescriptionInvisible() {
         tvDescription.setVisibility(View.GONE);
         buttonSqueezed.setVisibility(View.GONE);
         buttonFire.setVisibility(View.GONE);
@@ -602,16 +568,16 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //gibt true zurück, wenn in jeder Kategorie mindestens ein Button ausgewählt ist
-    public boolean checkFlags(){
-        if(accident == 1){
+    public boolean checkFlags() {
+        if (accident == 1) {
             Snackbar.make(this.requireView(), "Nur für Verkehrsunfall verfügbar, wählen Sie den Notruf!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return false;
         }
 
-        if(accident != -1 && trafficAccidentType != -1 && amountHurt != -1 && group != -1 &&
+        if (accident != -1 && trafficAccidentType != -1 && amountHurt != -1 && group != -1 &&
                 !(squeezed == -1 && fire == -1 && unconscious == -1 && fleshWound == -1 && brokenBone == -1 && strongBleed == -1 &&
-                        editTextSpecialInformation.getText().toString().equals(""))){
+                        editTextSpecialInformation.getText().toString().equals(""))) {
             return true;
         } else {
             Snackbar.make(this.requireView(), "Bitte machen Sie zu jeder Kategorie eine Angabe", Snackbar.LENGTH_LONG)
@@ -621,10 +587,10 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //Erstellt einen String aus den Flags des Notrufs, welcher durch das Klicken der Buttons gesetzt wurden
-    public String generateText(){
+    public String generateText() {
         String ret;
 
-        Cursor result = myDB.getMasterData();
+        Cursor result = myDB.getMasterdata();
         StringBuffer buffer = new StringBuffer();
         while (result.moveToNext()) {
             buffer.append(result.getString(1) + " ");
@@ -633,58 +599,58 @@ public class DemoFragment extends Fragment implements LocationListener {
         ret = "Anrufer: " + buffer.toString();
 
         //Unfalltyp
-        if(accident == 0){
+        if (accident == 0) {
             ret = ret + "Verkehrsunfall: ";
         } else {
 
             return "Fehler, accident ist nicht 1";
         }
         //Art des Verkehrsunfalls
-        if(trafficAccidentType == 0){
-            ret=ret + "Autounfall, " + "\n";
-        } else if(trafficAccidentType == 1){
+        if (trafficAccidentType == 0) {
+            ret = ret + "Autounfall, " + "\n";
+        } else if (trafficAccidentType == 1) {
             ret = ret + "Motorrad bzw. Fahrradunfall, " + "\n";
-        }else if(trafficAccidentType == 2){
+        } else if (trafficAccidentType == 2) {
             ret = ret + "Fußgänger, " + "\n";
         }
         //Anzahl Verletzte
-        if(amountHurt == 1){
+        if (amountHurt == 1) {
             ret = ret + "eine verletzte Person, " + "\n";
-        } else if(amountHurt == 2){
+        } else if (amountHurt == 2) {
             ret = ret + "zwei verletzte Personen, " + "\n";
-        } else if(amountHurt == 3){
+        } else if (amountHurt == 3) {
             ret = ret + "3 bis 5 verletzte Personen, " + "\n";
-        } else if(amountHurt == 6){
-            ret = ret + "6 bis 10 verletzte Personen, "  + "\n";
-        } else if(amountHurt == 11){
-            ret = ret + "mehr als 10 verletzte Personen, "  + "\n";
+        } else if (amountHurt == 6) {
+            ret = ret + "6 bis 10 verletzte Personen, " + "\n";
+        } else if (amountHurt == 11) {
+            ret = ret + "mehr als 10 verletzte Personen, " + "\n";
         }
         //Personengruppe
-        if(group == 0){
+        if (group == 0) {
             ret = ret + "nur erwachsene Personen, " + "\n";
-        } else if(group == 1){
+        } else if (group == 1) {
             ret = ret + "inklusive Kleinkind(er)) (unter 6 Jahre), " + "\n";
-        } else if(group == 2){
+        } else if (group == 2) {
             ret = ret + "inklusive Kinder, " + "\n";
         }
         //Beschreibung
-        if(squeezed == 1){
-            ret= ret + "Eingequetschte Person(en)" + "\n";
+        if (squeezed == 1) {
+            ret = ret + "Eingequetschte Person(en)" + "\n";
         }
-        if(fire == 1){
-            ret= ret + "Feuer" + "\n";
+        if (fire == 1) {
+            ret = ret + "Feuer" + "\n";
         }
-        if(unconscious == 1){
-            ret= ret + "Ohnmächtig" + "\n";
+        if (unconscious == 1) {
+            ret = ret + "Ohnmächtig" + "\n";
         }
-        if(fleshWound == 1){
-            ret= ret + "Fleischwunde" + "\n";
+        if (fleshWound == 1) {
+            ret = ret + "Fleischwunde" + "\n";
         }
-        if(brokenBone == 1){
-            ret= ret + "gebrochene Knochen" + "\n";
+        if (brokenBone == 1) {
+            ret = ret + "gebrochene Knochen" + "\n";
         }
-        if(strongBleed == 1){
-            ret= ret + "starke Blutung" + "\n";
+        if (strongBleed == 1) {
+            ret = ret + "starke Blutung" + "\n";
         }
         //Textfeld genauere Beschreibung
         /*if(!editTextSpecialInformation.getText().equals("")){
@@ -696,7 +662,7 @@ public class DemoFragment extends Fragment implements LocationListener {
     }
 
     //
-    public void popUpOtherAccident(){
+    public void popUpOtherAccident() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Nicht in der App verfügbar")
                 .setMessage("Bitte rufen Sie den Notruf normal an" + "\n" + "Durch Klicken auf 'Anrufen' würden Sie in einer Notfallsituation direkt weitergeleitet")
@@ -705,7 +671,7 @@ public class DemoFragment extends Fragment implements LocationListener {
                 // The dialog is automatically dismissed when a dialog button is clicked.
                 .setPositiveButton("anrufen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                       //doNothing (This is just a demo)
+                        //doNothing (This is just a demo)
                     }
                 })
                 .setNegativeButton("zurück", null)
@@ -713,7 +679,7 @@ public class DemoFragment extends Fragment implements LocationListener {
                 .show();
     }
 
-    public void scrollToEnd(){
+    public void scrollToEnd() {
         scrollView.post(new Runnable() {
             public void run() {
                 scrollView.scrollTo(0, scrollView.getBottom());
