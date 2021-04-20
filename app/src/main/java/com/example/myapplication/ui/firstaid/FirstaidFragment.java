@@ -12,15 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.masterdata.MasterdataViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FirstaidFragment extends Fragment {
 
-    private FirstaidViewModel firdAidViewModel;
+    private FirstaidViewModel firstaidViewModel;
 
     public static FirstaidFragment newInstance() {
         return new FirstaidFragment();
@@ -30,7 +28,7 @@ public class FirstaidFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        firdAidViewModel =
+        firstaidViewModel =
                 new ViewModelProvider(this).get(FirstaidViewModel.class);
         View root = inflater.inflate(R.layout.fragment_firstaid, container, false);
 
