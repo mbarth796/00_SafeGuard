@@ -66,4 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    public void onBackPressed(){
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_home);
+    }
 }
