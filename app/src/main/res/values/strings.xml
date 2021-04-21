@@ -3,7 +3,7 @@
     <string name="app_name">SafeGuard</string>
     <string name="nav_header_name">SafeGuard</string>
 
-    <!--Strings used in menu-->
+    <!--Strings used in activity_main_drawer.xml-->
     <string name="menu_home">Home</string>
     <string name="menu_emergency">Notruf</string>
     <string name="menu_demo">Demo</string>
@@ -11,7 +11,7 @@
     <string name="menu_contact">Notfallkontakt</string>
     <string name="menu_masterdata">Stammdaten</string>
 
-    <!-- Strings used in emergency-->
+    <!-- Strings used in fragment_emergency.xml-->
     <string name="emergency_accident">Vorfall</string>
     <string name="emergency_trafficAccident">Verkehrsunfall</string>
     <string name="emergency_OtherAccident">Andere</string>
@@ -22,8 +22,8 @@
     <string name="emergency_amountHurt">Anzahl Verletzte</string>
     <string name="emergency_One">1</string>
     <string name="emergency_Two">2</string>
-    <string name="emergency_3to5">3 - 5</string>
-    <string name="emergency_6to10">6 - 10</string>
+    <string name="emergency_3to5">3 – 5</string>
+    <string name="emergency_6to10">6 – 10</string>
     <string name="emergency_moreThanTen">> 10</string>
     <string name="emergency_group">Personengruppe</string>
     <string name="emergency_adults">nur Erwachsene</string>
@@ -40,14 +40,14 @@
     <string name="emergency_emergencyCall">Notruf absetzen</string>
     <string name="emergency_back">Zurück</string>
 
-    <!--Strings used in FirstAid-->
+    <!--Strings used in fragment_firstaid.xml-->
     <string name="firstaid_psyCare">Psychologische Betreuung</string>
     <string name="firstaid_woundCare">Wundbehandlung</string>
     <string name="firstaid_heartPress">Herzdruckmassage</string>
     <string name="firstaid_latPos">Stabile Seitenlage</string>
 
-    <!--Strings used in Masterdata-->
-    <string name="masterdata_prename">Vorname</string>
+    <!--Strings used in fragment_masterdata.xml-->
+    <string name="masterdata_firstname">Vorname</string>
     <string name="masterdata_lastname">Nachname</string>
     <string name="masterdata_telephone">Telefonnummer</string>
     <string name="masterdata_birthday">Geburtsdatum</string>
@@ -58,7 +58,7 @@
     <string name="masterdata_saveInput">Speichern</string>
     <string name="masterdata_delete">Löschen</string>
 
-    <!--Strings used in Contact-->
+    <!--Strings used in fragment_contact.xml-->
     <string name="contact_relationHint">Beziehung</string>
     <string name="contact_update">Ändern</string>
     <string name="contact_delete">Löschen</string>
