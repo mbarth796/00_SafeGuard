@@ -137,8 +137,9 @@ public class EmergencyFragment extends Fragment implements LocationListener {
 
         scrollView = root.findViewById(R.id.scrollView_emergency);
 
-        askPermissionsWhatsApp();
         askPermissionSMS();
+        askPermissionsWhatsApp();
+
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -479,13 +480,13 @@ public class EmergencyFragment extends Fragment implements LocationListener {
                     if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         askPermissionsWhatsApp();
                     } else {
-                        // Michis Nummer
+                        //Michis Nummer
                         String eText = phonenumberWhatsApp;
                         Long _ID = getContactIdUsingNumber(eText, view.getContext());
                         videoCall(_ID);
                     }
                 }
-                editTextSpecialInformation.setText(generateText() + gps);
+                editTextSpecialInformation.setText(generateText() + generateTextDescription() + gps);
             }
         });
 
@@ -598,7 +599,6 @@ public class EmergencyFragment extends Fragment implements LocationListener {
                     .setAction("Action", null).show();
             return false;
         }
-
         if (accident != -1 && trafficAccidentType != -1 && amountHurt != -1 && group != -1 &&
                 !(squeezed == -1 && fire == -1 && unconscious == -1 && fleshWound == -1 && brokenBone == -1 && strongBleed == -1 &&
                         editTextSpecialInformation.getText().toString().equals(""))) {
@@ -656,6 +656,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         } else if (group == 2) {
             ret = ret + "inklusive Kinder, " + "\n";
         }
+        /*
         //Beschreibung
         if (squeezed == 1) {
             ret = ret + "Eingequetschte Person(en)" + "\n";
@@ -675,6 +676,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         if (strongBleed == 1) {
             ret = ret + "starke Blutung" + "\n";
         }
+        */
 
         ret = ret;
 
@@ -686,6 +688,29 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         return ret;
     }
 
+    public String generateTextDescription(){
+        String ret="";
+        if (squeezed == 1) {
+            ret = ret + "Eingequetschte Person(en)" + "\n";
+        }
+        if (fire == 1) {
+            ret = ret + "Feuer" + "\n";
+        }
+        if (unconscious == 1) {
+            ret = ret + "Ohnmächtig" + "\n";
+        }
+        if (fleshWound == 1) {
+            ret = ret + "Fleischwunde" + "\n";
+        }
+        if (brokenBone == 1) {
+            ret = ret + "gebrochene Knochen" + "\n";
+        }
+        if (strongBleed == 1) {
+            ret = ret + "starke Blutung" + "\n";
+        }
+        return ret;
+    }
+
     //absenden der SMS mit den Notrufdaten
     public void sendEmergencyMessage() {
         //Check ob Permissions da sind
@@ -693,10 +718,11 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             //Senden von einer SMS mit den Daten und einer weiteren mit der genaueren Beschreibung
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phonenumberSMS, null, generateText(), null, null);
+            smsManager.sendTextMessage(phonenumberSMS, null, generateTextDescription(), null, null);
             if (!editTextSpecialInformation.getText().toString().equals("")) {
                 smsManager.sendTextMessage(phonenumberSMS, null, editTextSpecialInformation.getText().toString(), null, null);
             }
-            if(gps != null){
+            if(!gps.equals("")){
                 smsManager.sendTextMessage(phonenumberSMS, null, gps, null, null);
             }
             Snackbar.make(this.requireView(), "Notruf wurde versendet", Snackbar.LENGTH_LONG)

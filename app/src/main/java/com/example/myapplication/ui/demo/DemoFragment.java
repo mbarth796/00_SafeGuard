@@ -457,7 +457,7 @@ public class DemoFragment extends Fragment implements LocationListener {
                 if (checkFlags()) {
                     androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
                     builder.setCancelable(true);
-                    builder.setTitle("Glückwunsch, Sie Haben die Demo erfolgreich abgeschlossen!!");
+                    builder.setTitle("Glückwunsch, Sie Haben die Demo abgeschlossen!");
                     builder.setMessage("Folgende Nachricht wäre an den Notruf weitergeleitet worden: \n" + generateText() + "\n" + "Genauere Beschreibung: \n" + editTextSpecialInformation.getText().toString());
                     builder.show();
                 }
