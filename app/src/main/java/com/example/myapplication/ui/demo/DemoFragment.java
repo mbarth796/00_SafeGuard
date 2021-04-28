@@ -38,6 +38,8 @@ public class DemoFragment extends Fragment implements LocationListener {
 
     private DemoViewModel emergencyViewModel;
 
+
+    //see documentation of EmergencyFragment.java
     private int accident = -1;
     private int trafficAccidentType = -1;
     private int amountHurt = -1;
@@ -452,6 +454,8 @@ public class DemoFragment extends Fragment implements LocationListener {
         });
 
         buttonEmergencyCall.setOnClickListener(new View.OnClickListener() {
+
+            //just returns the values of the variables in a popup mesage instead of actually starting a call
             @Override
             public void onClick(View view) {
                 if (checkFlags()) {

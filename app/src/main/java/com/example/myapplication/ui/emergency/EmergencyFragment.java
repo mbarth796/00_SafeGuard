@@ -49,6 +49,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
 
     private EmergencyViewModel emergencyViewModel;
 
+    // define variables for the text generation and set them on -1
     private int accident = -1;
     private int trafficAccidentType = -1;
     private int amountHurt = -1;
@@ -59,9 +60,11 @@ public class EmergencyFragment extends Fragment implements LocationListener {
     private int fleshWound = -1;
     private int brokenBone = -1;
     private int strongBleed = -1;
+    // define emergency telephone number (currently from the developers)
     private String phonenumberWhatsApp = "+4915209521563";
     private String phonenumberSMS = "+491749823050";
 
+    // define variables for the xml files
     private TextView tvAccident, tvTrafficAccidentType, tvAmountHurt, tvGroup, tvDescription; //tvSpecialInformation
     private Button buttonTrafficAccident, buttonOtherAccident;
     private Button buttonCar, buttonBike, buttonPedestrian;
@@ -86,21 +89,13 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         emergencyViewModel =
                 new ViewModelProvider(this).get(EmergencyViewModel.class);
         View root = inflater.inflate(R.layout.fragment_emergency, container, false);
-       /*final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
 
-
+        //initialize variables and set all of the buttons invisble, except the first set
         tvAccident = root.findViewById(R.id.textView_accident);
         tvTrafficAccidentType = root.findViewById(R.id.textView_trafficAccidentType);
         tvAmountHurt = root.findViewById(R.id.textView_amountHurt);
         tvGroup = root.findViewById(R.id.textView_Group);
         tvDescription = root.findViewById(R.id.textView_description);
-        //tvSpecialInformation = findViewById(R.id.textview_specialInformation);
 
         buttonTrafficAccident = root.findViewById(R.id.button_trafficAccident);
         buttonOtherAccident = root.findViewById(R.id.button_otherAccident);
@@ -137,15 +132,17 @@ public class EmergencyFragment extends Fragment implements LocationListener {
 
         scrollView = root.findViewById(R.id.scrollView_emergency);
 
+        //ask for permissons if not granted
         askPermissionSMS();
         askPermissionsWhatsApp();
-
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_TO_REFRESH, MIN_DISTANCE_TO_REFRESH, EmergencyFragment.this);
         }
 
+        // set onClickListeners or the buttons and Edit-Texts
+        // A click on one of the buttons sets the next question and the next set of Buttons visible and marks/removes the mark of the clicked button and sets the value for the variables used
 // Accident
         buttonTrafficAccident.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -477,10 +474,11 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             public void onClick(View view) {
                 if (checkFlags()) {
                     sendEmergencyMessage();
+                    //cecks permissions for the WhatsApp call
                     if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         askPermissionsWhatsApp();
                     } else {
-                        //Michis Nummer
+                        //Starts the WhatsApp call
                         String eText = phonenumberWhatsApp;
                         Long _ID = getContactIdUsingNumber(eText, view.getContext());
                         videoCall(_ID);
@@ -493,6 +491,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //navigates to the home fragment
                     Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.nav_home);
             }
         });
@@ -502,7 +501,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         return root;
     }
 
-    //setzt alle Flags zurück, auf ungültige Werte
+    //resets all flags
     public void resetFlags() {
         accident = -1;
         trafficAccidentType = -1;
@@ -516,7 +515,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         strongBleed = -1;
     }
 
-    //setzt den Block zur Angabe des Verkehrsunfalltyps aus Überschrift und Buttons auf sichtar
+    // sets the block of the trafficAccidentType visible
     public void setTrafficAccidentTypeVisible() {
         tvTrafficAccidentType.setVisibility(View.VISIBLE);
         buttonCar.setVisibility(View.VISIBLE);
@@ -524,7 +523,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonPedestrian.setVisibility(View.VISIBLE);
     }
 
-    //setzt den Block zur Angabe des Verkehrsunfalltyps aus Überschrift und Buttons auf unsichtbar
+    // sets the block of the trafficAccidentType invisible
     public void setTrafficAccidentTypeInvisible() {
         tvTrafficAccidentType.setVisibility(View.GONE);
         buttonCar.setVisibility(View.GONE);
@@ -532,7 +531,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonPedestrian.setVisibility(View.GONE);
     }
 
-    //setzt den Block zur Anzahl der verletzten Personen aus Überschrift und Buttons auf sichtbar
+    // sets the block of amountHurt visible
     public void setAmountHurtVisible() {
         tvAmountHurt.setVisibility(View.VISIBLE);
         button1.setVisibility(View.VISIBLE);
@@ -542,7 +541,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonMoreThenTen.setVisibility(View.VISIBLE);
     }
 
-    //setzt den Block zur Anzahl der verletzten Personen aus Überschrift und Buttons auf unsichtbar
+    // sets the block of amountHurt invisible
     public void setAmountHurtInvisible() {
         tvAmountHurt.setVisibility(View.GONE);
         button1.setVisibility(View.GONE);
@@ -552,7 +551,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonMoreThenTen.setVisibility(View.GONE);
     }
 
-    //setzt den Block zur Personengruppe aus Überschrift und Buttons auf sichtbar
+    // sets the block of the group visible
     public void setGroupVisible() {
         tvGroup.setVisibility(View.VISIBLE);
         buttonAdults.setVisibility(View.VISIBLE);
@@ -560,7 +559,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonChildren.setVisibility(View.VISIBLE);
     }
 
-    //setzt den Block zur Personengruppe aus Überschrift und Buttons auf unsichtbar
+    // sets the block of the group invisible
     public void setGroupInvisible() {
         tvGroup.setVisibility(View.GONE);
         buttonAdults.setVisibility(View.GONE);
@@ -568,7 +567,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         buttonChildren.setVisibility(View.GONE);
     }
 
-    //setzt den Block zur Beschreibung aus Überschrift, Buttons und EditTextauf sichtbar
+    // sets the block of the description visible
     public void setDescriptionVisible() {
         tvDescription.setVisibility(View.VISIBLE);
         buttonSqueezed.setVisibility(View.VISIBLE);
@@ -580,7 +579,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         editTextSpecialInformation.setVisibility(View.VISIBLE);
     }
 
-    //setzt den Block zur Beschreibung aus Überschrift, Buttons und EditText auf unsichtbar
+    // sets the block of the description invisible
     public void setDescriptionInvisible() {
         tvDescription.setVisibility(View.GONE);
         buttonSqueezed.setVisibility(View.GONE);
@@ -592,7 +591,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         editTextSpecialInformation.setVisibility(View.GONE);
     }
 
-    //gibt true zurück, wenn in jeder Kategorie mindestens ein Button ausgewählt ist
+    //returns true, if any category has at least one valid value
     public boolean checkFlags() {
         if (accident == 1) {
             Snackbar.make(this.requireView(), "Nur für Verkehrsunfall verfügbar, wählen Sie den Notruf!", Snackbar.LENGTH_LONG)
@@ -610,7 +609,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         }
     }
 
-    //Erstellt einen String aus den Flags des Notrufs, welcher durch das Klicken der Buttons gesetzt wurden
+    //returns a String out of the set flags for the sms
     public String generateText() {
         String ret;
 
@@ -688,6 +687,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         return ret;
     }
 
+    // returns a String out of the set flags of the description
     public String generateTextDescription(){
         String ret="";
         if (squeezed == 1) {
@@ -711,7 +711,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         return ret;
     }
 
-    //absenden der SMS mit den Notrufdaten
+    //sends sms with the generated texts
     public void sendEmergencyMessage() {
         //Check ob Permissions da sind
         if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
@@ -732,6 +732,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         }
     }
 
+    //returns number for the WhatsApp call
     public Long getContactIdUsingNumber(String phoneNumber, Context context) {
         // Search contact using phone number
         Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
@@ -778,7 +779,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         startActivity(intent);
     }
 
-    //prüft, ob die Berechtigung zur SMS-Versendung gegeben wurde
+    //checks if the permission for sms is granted
     public void askPermissionSMS() {
         requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
     }
@@ -789,7 +790,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
         requestPermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_CONTACTS}, 1);
     }
 
-    //
+    // generates an alert popup for the button buttonOtherAccident
     public void popUpOtherAccident(){
         new AlertDialog.Builder(requireContext())
                 .setTitle("Nicht in der App verfügbar")
@@ -807,6 +808,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
                 .show();
     }
 
+    //starts a normal phone call
     public void phoneCall() {
         String number = phonenumberWhatsApp;
 
@@ -820,6 +822,8 @@ public class EmergencyFragment extends Fragment implements LocationListener {
             startActivity(intent);
         }
     }
+
+    //scrolls to the end of the page
     public void scrollToEnd(){
         scrollView.post(new Runnable() {
             public void run() {
@@ -841,6 +845,7 @@ public class EmergencyFragment extends Fragment implements LocationListener {
     public void onProviderDisabled (String provider) {
     }
 
+    //sets the variables of the location
     @Override
     public void onLocationChanged (Location location) {
 
